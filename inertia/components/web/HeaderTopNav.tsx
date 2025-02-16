@@ -1,0 +1,196 @@
+import { Link } from "@inertiajs/react";
+import { useState } from "react";
+
+
+const HeaderTopNav = () => {
+    return (
+        <div className="top-nav top-header sticky-header sticky-header-3">
+        <div className="container-fluid-lg">
+            <div className="row">
+                <div className="col-12">
+                    <div className="navbar-top">
+                        <button className="navbar-toggler d-xl-none d-block p-0 me-3" type="button"
+                            data-bs-toggle="offcanvas" data-bs-target="#primaryMenu">
+                            <span className="navbar-toggler-icon">
+                                <i className="iconly-Category icli theme-color"></i>
+                            </span>
+                        </button>
+                        <a href="/" className="web-logo nav-logo">
+                           <img src="./images/NXB_Logo_1.webp" />
+                        </a>
+
+                        <div className="search-full">
+                            <div className="input-group">
+                                <span className="input-group-text">
+                                    <i data-feather="search" className="font-light"></i>
+                                </span>
+                                <input type="text" className="form-control search-type" placeholder="Search here.." />
+                                <span className="input-group-text close-search">
+                                    <i data-feather="x" className="font-light"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div className="middle-box">
+                            <div className="center-box">
+                                <div className="searchbar-box order-xl-1 d-none d-xl-block">
+                                    <input type="search" className="form-control" id="exampleFormControlInput1"
+                                        placeholder="search for product, delivered to your door..." />
+                                    <button className="btn search-button">
+                                        <i className="iconly-Search icli"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="rightside-menu">
+                            <div className="dropdown-dollar">
+                                {/* <div className="dropdown">
+                                    <button className="dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <span>Language</span> <i className="fa-solid fa-angle-down"></i>
+                                    </button>
+                                    <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li>
+                                            <a id="eng" className="dropdown-item" href="javascript:void(0)">English</a>
+                                        </li>
+                                        <li>
+                                            <a id="hin" className="dropdown-item" href="javascript:void(0)">Hindi</a>
+                                        </li>
+                                        <li>
+                                            <a id="guj" className="dropdown-item" href="javascript:void(0)">Gujarati</a>
+                                        </li>
+                                        <li>
+                                            <a id="arb" className="dropdown-item" href="javascript:void(0)">Arbic</a>
+                                        </li>
+                                        <li>
+                                            <a id="rus" className="dropdown-item" href="javascript:void(0)">Rusia</a>
+                                        </li>
+                                        <li>
+                                            <a className="dropdown-item" href="javascript:void(0)">Chinese</a>
+                                        </li>
+                                    </ul>
+                                </div> */}
+
+                                <div className="dropdown">
+                                    <button className="dropdown-toggle m-0" type="button" id="dropdownMenuButton1"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <span>Dollar</span> <i className="fa-solid fa-angle-down"></i>
+                                    </button>
+                                    <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li>
+                                            <a id="usd" className="dropdown-item" href="javascript:void(0)">USD</a>
+                                        </li>
+                                        <li>
+                                            <a id="inr" className="dropdown-item" href="javascript:void(0)">INR</a>
+                                        </li>
+                                        <li>
+                                            <a id="eur" className="dropdown-item" href="javascript:void(0)">EUR</a>
+                                        </li>
+                                        <li>
+                                            <a id="aud" className="dropdown-item" href="javascript:void(0)">AUD</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div className="option-list">
+                                <ul>
+                                    <li>
+                                        <a href="javascript:void(0)" className="header-icon user-icon search-icon">
+                                            <i className="iconly-Profile icli"></i>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="javascript:void(0)" className="header-icon search-box search-icon">
+                                            <i className="iconly-Search icli"></i>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="compare.html" className="header-icon">
+                                            <small className="badge-number">2</small>
+                                            <i className="iconly-Swap icli"></i>
+                                        </a>
+                                    </li>
+
+                                    <li className="onhover-dropdown">
+                                        <a href="javascript:void(0)" className="header-icon swap-icon">
+                                            <i className="iconly-Heart icli"></i>
+                                        </a>
+
+                                    </li>
+
+                                    <li className="onhover-dropdown">
+                                        <a href="cart.html" className="header-icon bag-icon">
+                                            <small className="badge-number">2</small>
+                                            <i className="iconly-Bag-2 icli"></i>
+                                        </a>
+                                        <div className="onhover-div">
+                                            <ul className="cart-list">
+                                                <li>
+                                                    <div className="drop-cart">
+                                                        <a href="product-left.html" className="drop-image">
+                                                            <img src="../assets/images/vegetable/product/1.png"
+                                                                className="blur-up lazyload" alt="" />
+                                                        </a>
+
+                                                        <div className="drop-contain">
+                                                            <a href="product-left.html">
+                                                                <h5>Fantasy Crunchy Choco Chip Cookies</h5>
+                                                            </a>
+                                                            <h6><span>1 x</span> $80.58</h6>
+                                                            <button className="close-button">
+                                                                <i className="fa-solid fa-xmark"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </li>
+
+                                                <li>
+                                                    <div className="drop-cart">
+                                                        <a href="product-left.html" className="drop-image">
+                                                            <img src="../assets/images/vegetable/product/2.png"
+                                                                className="blur-up lazyload" alt="" />
+                                                        </a>
+
+                                                        <div className="drop-contain">
+                                                            <a href="product-left.html">
+                                                                <h5>Peanut Butter Bite Premium Butter Cookies 600 g
+                                                                </h5>
+                                                            </a>
+                                                            <h6><span>1 x</span> $25.68</h6>
+                                                            <button className="close-button">
+                                                                <i className="fa-solid fa-xmark"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+
+
+                                            <div className="price-box">
+                                                <h5>Price :</h5>
+                                                <h4 className="theme-color fw-bold">$106.58</h4>
+                                            </div>
+
+                                            <div className="button-group">
+                                                <a href="cart.html" className="btn btn-sm cart-button">View Cart</a>
+                                                <a href="checkout.html" className="btn btn-sm cart-button theme-bg-color
+                                                text-white">Checkout</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    );
+  };
+
+  export default HeaderTopNav;

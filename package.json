@@ -1,0 +1,118 @@
+{
+  "name": "nxbcart",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "node bin/server.js",
+    "build": "node ace build",
+    "dev": "node ace serve --hmr",
+    "test": "node ace test",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "typecheck": "tsc --noEmit"
+  },
+  "imports": {
+    "#controllers/*": "./app/controllers/*.js",
+    "#exceptions/*": "./app/exceptions/*.js",
+    "#models/*": "./app/models/*.js",
+    "#mails/*": "./app/mails/*.js",
+    "#services/*": "./app/services/*.js",
+    "#listeners/*": "./app/listeners/*.js",
+    "#events/*": "./app/events/*.js",
+    "#middleware/*": "./app/middleware/*.js",
+    "#validators/*": "./app/validators/*.js",
+    "#providers/*": "./providers/*.js",
+    "#policies/*": "./app/policies/*.js",
+    "#abilities/*": "./app/abilities/*.js",
+    "#database/*": "./database/*.js",
+    "#tests/*": "./tests/*.js",
+    "#start/*": "./start/*.js",
+    "#config/*": "./config/*.js"
+  },
+  "devDependencies": {
+    "@adonisjs/assembler": "^7.8.2",
+    "@adonisjs/eslint-config": "^2.0.0-beta.6",
+    "@adonisjs/prettier-config": "^1.4.0",
+    "@adonisjs/tsconfig": "^1.4.0",
+    "@japa/assert": "^3.0.0",
+    "@japa/plugin-adonisjs": "^3.0.1",
+    "@japa/runner": "^3.1.4",
+    "@swc/core": "1.10.1",
+    "@types/lodash": "^4.17.15",
+    "@types/luxon": "^3.4.2",
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "@types/react-slick": "^0.23.13",
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "^9.17.0",
+    "hot-hook": "^0.4.0",
+    "pino-pretty": "^13.0.0",
+    "prettier": "^3.4.2",
+    "ts-node-maintained": "^10.9.4",
+    "typescript": "^5.7.3",
+    "vite": "^6.0.3"
+  },
+  "dependencies": {
+    "@adonisjs/auth": "^9.2.4",
+    "@adonisjs/core": "^6.17.0",
+    "@adonisjs/drive": "^3.2.0",
+    "@adonisjs/inertia": "^3.0.1",
+    "@adonisjs/lucid": "^21.5.1",
+    "@adonisjs/redis": "^9.1.0",
+    "@adonisjs/session": "^7.5.0",
+    "@adonisjs/shield": "^8.1.1",
+    "@adonisjs/static": "^1.1.1",
+    "@adonisjs/vite": "^4.0.0",
+    "@aws-sdk/client-s3": "^3.741.0",
+    "@aws-sdk/s3-request-presigner": "^3.741.0",
+    "@ckeditor/ckeditor5-build-classic": "^44.1.0",
+    "@ckeditor/ckeditor5-react": "^9.4.0",
+    "@hookform/resolvers": "^4.0.0",
+    "@inertiajs/inertia": "^0.11.1",
+    "@inertiajs/react": "^2.0.3",
+    "@vinejs/vine": "^3.0.0",
+    "bootstrap": "^5.3.3",
+    "ckeditor5": "^44.1.0",
+    "ckeditor5-premium-features": "^44.1.0",
+    "edge.js": "^6.2.0",
+    "font-awesome": "^4.7.0",
+    "lodash": "^4.17.21",
+    "luxon": "^3.5.0",
+    "mysql2": "^3.12.0",
+    "react": "^19.0.0",
+    "react-bootstrap": "^2.10.9",
+    "react-dom": "^19.0.0",
+    "react-hook-form": "^7.54.2",
+    "react-simple-wysiwyg": "^3.2.0",
+    "react-slick": "^0.30.3",
+    "reflect-metadata": "^0.2.2",
+    "rsuite": "^5.77.1",
+    "simplebar": "^6.3.0",
+    "simplebar-react": "^3.3.0",
+    "slick-carousel": "^1.8.1",
+    "slugify": "^1.6.6",
+    "swiper": "^11.2.2",
+    "yup": "^1.6.1"
+  },
+  "hotHook": {
+    "boundaries": [
+      "./app/controllers/**/*.ts",
+      "./app/middleware/*.ts"
+    ]
+  },
+  "overrides": {
+    "strtok3": "8.0.1"
+  },
+  "resolutions": {
+    "strtok3": "8.0.1"
+  },
+  "pnpm": {
+    "overrides": {
+      "strtok3": "8.0.1"
+    }
+  },
+  "prettier": "@adonisjs/prettier-config"
+}
