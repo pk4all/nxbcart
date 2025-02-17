@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column,hasOne,hasMany,belongsTo } from '@adonisjs/lucid/orm'
+import { BaseModel, column,hasOne,hasMany,belongsTo,computed } from '@adonisjs/lucid/orm'
 import type { HasMany,BelongsTo,HasOne } from '@adonisjs/lucid/types/relations'
 import Category from '#models/category'
 import ProductDescription from '#models/product_description'
@@ -30,7 +30,6 @@ export enum PublishedStatus{
   Draft=3
 }
 
-
 export default class Product extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
@@ -42,24 +41,26 @@ export default class Product extends BaseModel {
   @column()
   declare sku: string;
 
-  @column()
+  @column({serializeAs:"user_id"})
+  declare user_id:number;
+  @column({serializeAs:"category_id"})
   declare category_id:number;
-  @column()
+  @column({serializeAs:"sub_category_id"})
   declare sub_category_id:number;
 
-  @column()
+  @column({serializeAs:'model_name'})
   declare model_name: string;
   @column()
   declare tags: string;
-  @column()
+  @column({serializeAs:'warranty_summary'})
   declare warranty_summary: string;
-  @column()
+  @column({serializeAs:'covered_in_warranty'})
   declare covered_in_warranty: string;
-  @column()
+  @column({serializeAs:'sales_in_package'})
   declare sales_in_package: string;
-  @column()
+  @column({serializeAs:'key_features'})
   declare key_features: string;
-  @column()
+  @column({serializeAs:'video_url'})
   declare video_url: string;
 
   @column()
@@ -77,18 +78,22 @@ export default class Product extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime
 
+  @computed()
   public get statusText(): string {
     return this.status === Status.Active ? 'Active' : 'Inactive';
   }
 
+  @computed()
   public get publishedStatusText(): string {
     return this.published_status === PublishedStatus.Pending ? 'Pending' : this.published_status === PublishedStatus.Published?'Published':this.published_status === PublishedStatus.Draft?'Draft':'Suspended';
   }
 
+  @computed()
   public get topProductText(): string {
     return this.top_product === TopProduct.Yes ? 'Yes' : 'No';
   }
 
+  @computed()
   public get featuredProductText(): string {
     return this.featured_product === Featured.Yes ? 'Yes' : 'No';
   }

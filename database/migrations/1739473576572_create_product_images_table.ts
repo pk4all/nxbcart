@@ -14,8 +14,8 @@ export default class extends BaseSchema {
       table.string('thum_url')
       table.tinyint('is_default').defaultTo(0) // ['No','Yes']
       table.tinyint('status').unsigned().notNullable().defaultTo(1) // 0=>Inctive, 1=> Active
-      table.timestamp('created_at')
-      table.timestamp('updated_at')
+      table.timestamp('created_at').defaultTo(this.now())
+      table.timestamp('updated_at').defaultTo(this.now())
     })
   }
 

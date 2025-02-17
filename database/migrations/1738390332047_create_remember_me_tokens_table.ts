@@ -16,8 +16,8 @@ export default class extends BaseSchema {
 
       table.string('hash').notNullable().unique()
       table.timestamp('created_at').notNullable()
-      table.timestamp('updated_at').notNullable()
-      table.timestamp('expires_at').notNullable()
+      table.timestamp('updated_at').defaultTo(this.now()).notNullable()
+      table.timestamp('expires_at').defaultTo(this.now()).notNullable()
     })
   }
 

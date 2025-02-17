@@ -19,13 +19,13 @@ export default class extends BaseSchema {
       table.string('sales_in_package').nullable()
       table.string('key_features').nullable()
       table.string('video_url').nullable()
-      table.tinyint('featured_product').defaultTo(1) //,['No','Yes']
-      table.tinyint('top_product').defaultTo(1) //'No','Yes']
-      table.tinyint('published_status').defaultTo(1) //['Pending', 'Published', 'Suspended','Draft']
+      table.tinyint('featured_product').defaultTo(0) //,['No','Yes']
+      table.tinyint('top_product').defaultTo(0) //'No','Yes']
+      table.tinyint('published_status').defaultTo(2) //['Pending', 'Published', 'Suspended','Draft']
       
       table.tinyint('status').unsigned().notNullable().defaultTo(1) // 0=>Inctive, 1=> Active
-      table.timestamp('created_at')
-      table.timestamp('updated_at')
+      table.timestamp('created_at').defaultTo(this.now())
+      table.timestamp('updated_at').defaultTo(this.now())
     })
   }
 

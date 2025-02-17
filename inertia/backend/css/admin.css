@@ -44144,3 +44144,9 @@ html[dir="rtl"] .grow svg{
 .paging{
     padding: .75rem;
 }
+.default-image{
+    border: #0000ff solid 2px;
+}
+.rs-uploader-picture .rs-uploader-file-item{
+    border-radius: 0 !important;
+}

@@ -11,8 +11,8 @@ export default class extends BaseSchema {
       table.integer('qty')
       table.tinyint('stock_status').defaultTo(1) //['Out Of Stock','In Stock','On Backorder']
       table.tinyint('status').unsigned().notNullable().defaultTo(1) // 0=>Inctive, 1=> Active
-      table.timestamp('created_at')
-      table.timestamp('updated_at')
+      table.timestamp('created_at').defaultTo(this.now())
+      table.timestamp('updated_at').defaultTo(this.now())
     })
   }
 

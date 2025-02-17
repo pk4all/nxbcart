@@ -46,6 +46,41 @@ export interface Attribute {
   category:Category
 }
 
+export interface ProductVideoUrl{
+  id:number;
+  video_url:string
+}
+export interface Product{
+  id:number;
+  name:string;
+  slug:string;
+  sku:string;
+  status:string;
+  statusText:string;
+  topProductText:string;
+  featuredProductText:string;
+  category:Category;
+  productPrice:productPrice;
+  productImages:ProductImage[];
+  productInventory:productInventory
+}
+export interface productInventory{
+  id:number;
+  sku:string;
+  qty:number
+}
+export interface productPrice{
+  id:number;
+  price:number;
+  sale_price:number
+}
+
+export interface ProductImage{
+  id:number;
+  product_id:number;
+  thum_url:string
+}
+
 export interface Contact {
   id: number;
   name: string;

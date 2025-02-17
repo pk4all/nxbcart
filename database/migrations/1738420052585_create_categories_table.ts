@@ -14,7 +14,7 @@ export default class extends BaseSchema {
       table.integer('parent_id').unsigned().references('id').inTable('categories').onDelete('CASCADE') 
       table.string('status').nullable()
       table.timestamp('created_at')
-      table.timestamp('updated_at')
+      table.timestamp('updated_at').defaultTo(this.now())
     })
   }
 

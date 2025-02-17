@@ -63,6 +63,12 @@ router.group(() => {
         router.get('/upload-product-images/:id', [ProductController, 'uploadImages'])
         router.post('/product/attribute/file-upload', [ProductController, 'fileUpload'])
         router.post('/product/add', [ProductController, 'saveProduct'])
+        router.post('/product/update-video-url/:id',[ProductController,'updateVideoUrl'])
+        router.post('/product/upload-images/:id',[ProductController,'updateProductImages'])
+        router.post('/product/remove-product-image',[ProductController,'removeProductImages'])
+        router.post('/product/set-default-product-image',[ProductController,'setDefaultImage'])
+        
+
     }).use(middleware.auth())
 }).prefix('/admin')
 

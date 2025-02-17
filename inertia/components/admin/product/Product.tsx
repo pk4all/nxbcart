@@ -10,7 +10,6 @@ const Product = () => {
             <input {...register("productInformation.name")} placeholder="Enter name" className="form-control" />
             {errors.productInformation && <p style={{ color: "red" }}>{errors.productInformation?.name?.message}</p>}
         </>
-        
     );
   };
 
