@@ -138,4 +138,5 @@ export default class CategoryController {
             return inertia.render('admin/category/add',{errors:{invalid:error.message}})
         }
     }
+    
 }

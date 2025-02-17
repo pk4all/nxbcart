@@ -236,4 +236,50 @@ export default class ProductController {
             return response.status(500).json({ message:error.message })
         }
     }
+    async changeStatus({response,params}:HttpContext){
+        const {id}=params
+        try {
+            const product = await Product.findOrFail(id)
+            if(product.status){
+                product.status = 0
+            }else{
+                product.status = 1
+            }
+            await product.save()
+            return response.json({message:'Set product status'})
+        } catch (error) {
+            return response.status(500).json({ message:error.message })
+        }
+    }
+
+    async setTopProduct({response,params}:HttpContext){
+        const {id}=params
+        try {
+            const product = await Product.findOrFail(id)
+            if(product.top_product){
+                product.top_product = 0
+            }else{
+                product.top_product = 1
+            }
+            await product.save()
+            return response.json({message:'Set top product status'})
+        } catch (error) {
+            return response.status(500).json({ message:error.message })
+        }
+    }
+    async setFeaturedProduct({response,params}:HttpContext){
+        const {id}=params
+        try {
+            const product = await Product.findOrFail(id)
+            if(product.featured_product){
+                product.featured_product = 0
+            }else{
+                product.featured_product = 1
+            }
+            await product.save()
+            return response.json({message:'Set featured product status'})
+        } catch (error) {
+            return response.status(500).json({ message:error.message })
+        }
+    }
 }

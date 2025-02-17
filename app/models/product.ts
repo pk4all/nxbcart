@@ -63,11 +63,11 @@ export default class Product extends BaseModel {
   @column({serializeAs:'video_url'})
   declare video_url: string;
 
-  @column()
+  @column({serializeAs:"featured_product"})
   declare featured_product: Featured;
-  @column()
+  @column({serializeAs:"top_product"})
   declare top_product: TopProduct;
-  @column()
+  @column({serializeAs:"published_status"})
   declare published_status: PublishedStatus;
   @column()
   declare status: Status;

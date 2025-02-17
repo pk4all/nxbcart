@@ -67,6 +67,9 @@ router.group(() => {
         router.post('/product/upload-images/:id',[ProductController,'updateProductImages'])
         router.post('/product/remove-product-image',[ProductController,'removeProductImages'])
         router.post('/product/set-default-product-image',[ProductController,'setDefaultImage'])
+        router.get('/product/change-status/:id',[ProductController,'changeStatus'])
+        router.get('/product/change-is-top/:id',[ProductController,'setTopProduct'])
+        router.get('/product/change-featured/:id',[ProductController,'setFeaturedProduct'])
         
 
     }).use(middleware.auth())

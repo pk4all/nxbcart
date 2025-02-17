@@ -55,10 +55,12 @@ export interface Product{
   name:string;
   slug:string;
   sku:string;
-  status:string;
+  status:boolean;
   statusText:string;
   topProductText:string;
   featuredProductText:string;
+  top_product:boolean;
+  featured_product:boolean;
   category:Category;
   productPrice:productPrice;
   productImages:ProductImage[];
