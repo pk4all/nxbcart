@@ -18,5 +18,7 @@ export default class CustomerApiController {
             return response.status(500).json({type:'error',message:error.message})
         }
     }
+
+    
     
 }
