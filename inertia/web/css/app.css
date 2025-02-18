@@ -19202,7 +19202,7 @@
     height:100%;
     top:0;
     left:0;
-    background-image:url(../images/inner-page/log-in-bg.png);
+    background-image:url(./images/log-in-bg.png);
     background-position:center;
     background-repeat:no-repeat;
     background-size:cover;
@@ -25517,7 +25517,9 @@
   .w-80{
     width: 80%;
   }
-
+.rs-modal-body{
+  overflow: hidden !important;
+}
   /* .last-item-right{
     margin-left: auto;
   } */

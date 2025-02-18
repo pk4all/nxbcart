@@ -1,7 +1,7 @@
 import { Link } from "@inertiajs/react";
 import { useState } from "react";
 import HeaderCart from "./HeaderCart";
-
+import HeaderLogin from "./header/HeaderLogin";
 const HeaderTopNav = () => {
     return (
         <div className="top-nav top-header sticky-header sticky-header-3">
@@ -97,12 +97,8 @@ const HeaderTopNav = () => {
 
                             <div className="option-list">
                                 <ul>
-                                    <li className="onhover-dropdown">
-                                        <a href="javascript:void(0)" className="header-icon">
-                                            <i className="iconly-Profile icli"></i>
-                                        </a>
-                                    </li>
-
+                                    
+                                    <HeaderLogin />
                                     <li>
                                         <a href="javascript:void(0)" className="header-icon search-box search-icon">
                                             <i className="iconly-Search icli"></i>

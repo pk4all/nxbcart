@@ -39,7 +39,7 @@ const HomeDeals = () => {
                     <Swiper
                         modules={[Navigation, Pagination, Autoplay]}
                         spaceBetween={20}  // Space between slides
-                        slidesPerView={2}   // Show 3 slides at a time
+                        slidesPerView={3}   // Show 3 slides at a time
                         navigation={false}         // Show next/prev arrows
                         pagination={false} // Show dots { clickable: false }
                         autoplay={{ delay: 2500 }} // Auto slide every 2.5s
