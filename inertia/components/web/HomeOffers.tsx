@@ -1,5 +1,7 @@
 import { Link } from "@inertiajs/react";
 import { useState,useEffect } from "react";
+import { Placeholder } from 'rsuite';
+import 'rsuite/Placeholder/styles/index.css';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
@@ -17,14 +19,18 @@ const HomeOffers = () => {
        const [offers, setOffers] = useState<Offers[]>([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        fetch("/categories")
-            .then((response) => response.json())
-            .then((data) => {setOffers(data);console.log(data,'data')}) 
-            .catch((err) => console.error("Error fetching data:", err));
+        // fetch("/categories")
+        //     .then((response) => response.json())
+        //     .then((data) => {setOffers(data);console.log(data,'data')}) 
+        //     .catch((err) => console.error("Error fetching data:", err));
             setLoading(false);
       }, []);
     if (loading) {
-        return <div>Loading...</div>;
+        return <div className="category-section-2">
+                <div className="container-fluid-lg">
+                    <Placeholder.Grid rows={4} columns={4} active />
+                </div>
+            </div>;
     }
     return (     
      <>

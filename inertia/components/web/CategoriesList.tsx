@@ -12,9 +12,9 @@ const CategoriesList = () => {
     const [categories, setCategories] = useState<Category[]>([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        fetch("/categories")
+        fetch("/api/categories")
             .then((response) => response.json())
-            .then((data) => {setCategories(data);setLoading(false);console.log(data,'categories')})
+            .then((data) => {setCategories(data);setLoading(false);})
             .catch((err) => console.error("Error fetching categories:", err));
       }, []);
     if (loading) {

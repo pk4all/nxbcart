@@ -5,6 +5,7 @@ import db from '@adonisjs/lucid/services/db'
 import Product from '#models/product'
 import sharp from 'sharp'
 import ProductImage from '#models/product_image'
+import { algoliasearch } from 'algoliasearch'
 export default class ProductController {
 
     async products({inertia,request}: HttpContext){
@@ -281,5 +282,12 @@ export default class ProductController {
         } catch (error) {
             return response.status(500).json({ message:error.message })
         }
+    }
+
+    async syncProductsWithAlgolia(){
+    //     const client = algoliasearch('T7MV0W22DS', '9366d0e8df670381d06fdbfbe7669457');
+    //     const datasetRequest = await Product.all()
+    //    // const datas = datasetRequest.serialize()
+    //     return await client.saveObjects({ indexName: 'products', objects: datasetRequest });
     }
 }

@@ -17,10 +17,10 @@ const HomeDeals = () => {
     const [data, setData] = useState<Deals[]>([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        fetch("/categories")
-            .then((response) => response.json())
-            .then((data) => {setData(data);console.log(data,'data')}) 
-            .catch((err) => console.error("Error fetching data:", err));
+        // fetch("/categories")
+        //     .then((response) => response.json())
+        //     .then((data) => {setData(data);console.log(data,'data')}) 
+        //     .catch((err) => console.error("Error fetching data:", err));
             setLoading(false);
       }, []);
     if (loading) {

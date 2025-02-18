@@ -1,5 +1,7 @@
 import { Link } from "@inertiajs/react";
 import { useState,useEffect } from "react";
+import { Placeholder } from 'rsuite';
+import 'rsuite/Placeholder/styles/index.css';
 interface Banner {
     id: number;
     name: string;
@@ -11,14 +13,18 @@ const HomeBanner = () => {
     const [banner, setBanner] = useState<Banner[]>([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        fetch("/categories")
-            .then((response) => response.json())
-            .then((data) => {setBanner(data);console.log(data,'data')}) 
-            .catch((err) => console.error("Error fetching Banners:", err));
+        // fetch("/categories")
+        //     .then((response) => response.json())
+        //     .then((data) => {setBanner(data);console.log(data,'data')}) 
+        //     .catch((err) => console.error("Error fetching Banners:", err));
             setLoading(false);
       }, []);
     if (loading) {
-        return <div>Loading...</div>;
+        return <div className="product-section">
+                <div className="container-fluid-lg">
+                    <Placeholder.Grid rows={4} columns={4} active />
+                </div>
+            </div>;
     }
     return (     
      <>

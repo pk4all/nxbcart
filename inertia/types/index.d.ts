@@ -66,6 +66,7 @@ export interface Product{
   productImages:ProductImage[];
   productInventory:productInventory
 }
+
 export interface productInventory{
   id:number;
   sku:string;

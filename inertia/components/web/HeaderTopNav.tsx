@@ -1,6 +1,6 @@
 import { Link } from "@inertiajs/react";
 import { useState } from "react";
-
+import HeaderCart from "./HeaderCart";
 
 const HeaderTopNav = () => {
     return (
@@ -9,14 +9,16 @@ const HeaderTopNav = () => {
             <div className="row">
                 <div className="col-12">
                     <div className="navbar-top">
+
                         <button className="navbar-toggler d-xl-none d-block p-0 me-3" type="button"
                             data-bs-toggle="offcanvas" data-bs-target="#primaryMenu">
                             <span className="navbar-toggler-icon">
                                 <i className="iconly-Category icli theme-color"></i>
                             </span>
                         </button>
+
                         <a href="/" className="web-logo nav-logo">
-                           <img src="./images/NXB_Logo_1.webp" />
+                           <img src="/images/NXB_Logo_1.webp" />
                         </a>
 
                         <div className="search-full">
@@ -43,7 +45,7 @@ const HeaderTopNav = () => {
                             </div>
                         </div>
                         <div className="rightside-menu">
-                            <div className="dropdown-dollar">
+                            <div className="dropdown-dollar d-xl-none">
                                 {/* <div className="dropdown">
                                     <button className="dropdown-toggle" type="button" id="dropdownMenuButton1"
                                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -95,8 +97,8 @@ const HeaderTopNav = () => {
 
                             <div className="option-list">
                                 <ul>
-                                    <li>
-                                        <a href="javascript:void(0)" className="header-icon user-icon search-icon">
+                                    <li className="onhover-dropdown">
+                                        <a href="javascript:void(0)" className="header-icon">
                                             <i className="iconly-Profile icli"></i>
                                         </a>
                                     </li>
@@ -107,12 +109,12 @@ const HeaderTopNav = () => {
                                         </a>
                                     </li>
 
-                                    <li>
+                                    {/* <li>
                                         <a href="compare.html" className="header-icon">
                                             <small className="badge-number">2</small>
                                             <i className="iconly-Swap icli"></i>
                                         </a>
-                                    </li>
+                                    </li> */}
 
                                     <li className="onhover-dropdown">
                                         <a href="javascript:void(0)" className="header-icon swap-icon">
@@ -121,66 +123,7 @@ const HeaderTopNav = () => {
 
                                     </li>
 
-                                    <li className="onhover-dropdown">
-                                        <a href="cart.html" className="header-icon bag-icon">
-                                            <small className="badge-number">2</small>
-                                            <i className="iconly-Bag-2 icli"></i>
-                                        </a>
-                                        <div className="onhover-div">
-                                            <ul className="cart-list">
-                                                <li>
-                                                    <div className="drop-cart">
-                                                        <a href="product-left.html" className="drop-image">
-                                                            <img src="../assets/images/vegetable/product/1.png"
-                                                                className="blur-up lazyload" alt="" />
-                                                        </a>
-
-                                                        <div className="drop-contain">
-                                                            <a href="product-left.html">
-                                                                <h5>Fantasy Crunchy Choco Chip Cookies</h5>
-                                                            </a>
-                                                            <h6><span>1 x</span> $80.58</h6>
-                                                            <button className="close-button">
-                                                                <i className="fa-solid fa-xmark"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </li>
-
-                                                <li>
-                                                    <div className="drop-cart">
-                                                        <a href="product-left.html" className="drop-image">
-                                                            <img src="../assets/images/vegetable/product/2.png"
-                                                                className="blur-up lazyload" alt="" />
-                                                        </a>
-
-                                                        <div className="drop-contain">
-                                                            <a href="product-left.html">
-                                                                <h5>Peanut Butter Bite Premium Butter Cookies 600 g
-                                                                </h5>
-                                                            </a>
-                                                            <h6><span>1 x</span> $25.68</h6>
-                                                            <button className="close-button">
-                                                                <i className="fa-solid fa-xmark"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-
-
-                                            <div className="price-box">
-                                                <h5>Price :</h5>
-                                                <h4 className="theme-color fw-bold">$106.58</h4>
-                                            </div>
-
-                                            <div className="button-group">
-                                                <a href="cart.html" className="btn btn-sm cart-button">View Cart</a>
-                                                <a href="checkout.html" className="btn btn-sm cart-button theme-bg-color
-                                                text-white">Checkout</a>
-                                            </div>
-                                        </div>
-                                    </li>
+                                    <HeaderCart />
                                 </ul>
                             </div>
                         </div>

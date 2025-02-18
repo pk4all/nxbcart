@@ -17,10 +17,10 @@ const FullBanner = () => {
        const [offers, setOffers] = useState<Offers[]>([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        fetch("/categories")
-            .then((response) => response.json())
-            .then((data) => {setOffers(data);console.log(data,'data')}) 
-            .catch((err) => console.error("Error fetching data:", err));
+        // fetch("/categories")
+        //     .then((response) => response.json())
+        //     .then((data) => {setOffers(data);console.log(data,'data')}) 
+        //     .catch((err) => console.error("Error fetching data:", err));
             setLoading(false);
       }, []);
     if (loading) {

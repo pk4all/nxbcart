@@ -59,7 +59,7 @@ interface MainMenuProps {
 
                   <div className="col-xl-2 col-sm-6">
                       <div className="footer-title">
-                          <h4>About Fastkart</h4>
+                          <h4>About NXBKart</h4>
                       </div>
                       <ul className="footer-list footer-contact mb-sm-0 mb-3">
                           <li>
@@ -150,7 +150,7 @@ interface MainMenuProps {
                               <a href="javascript:void(0)">
                                   <div className="inform-box flex-start-box">
                                       <i className="feather fas fa-map map-pin"></i>
-                                      <p>Fastkart Demo Store, Demo store india 345 - 659</p>
+                                      <p>NXBKart Demo Store, Demo store india 345 - 659</p>
                                   </div>
                               </a>
                           </li>
@@ -188,7 +188,7 @@ interface MainMenuProps {
 
           <div className="sub-footer section-small-space">
               <div className="left-footer">
-                  <p>2025 Copyright By NXB India</p>
+                  <p>2025 Copyright By NXB India Pvt. Ltd.</p>
               </div>
               <div className="right-footer">
                   <ul className="payment-box">
@@ -204,9 +204,9 @@ interface MainMenuProps {
                       <li>
                           <img src="/images/icon/paymant/master-card.png" alt="" />
                       </li>
-                      <li>
+                      {/* <li>
                           <img src="/images/icon/paymant/giro-pay.png" alt="" />
-                      </li>
+                      </li> */}
                   </ul>
               </div>
           </div>

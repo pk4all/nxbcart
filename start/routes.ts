@@ -15,15 +15,28 @@ const DashboardController = () => import('#controllers/admin/dashboard_controlle
 const ProductController = () => import('#controllers/admin/product_controller')
 const CategoryController = () => import('#controllers/admin/category_controller')
 const AttributesController = ()=>import('#controllers/admin/attributes_controller')
+const HomeApiController = ()=>import('#controllers/apis/home_api_controller')
 
 // router.on('/').renderInertia('web/home')
 router.get('/', [HomeController, 'index'])
 router.get('/categories', [HomeController, 'getCategories'])
 
-
 router.get('/csrf-token', async ({ response, request }) => {
     return response.json({ csrfToken: request.csrfToken})
 })
+
+//**************Apis Router******************/
+router.group(() => {
+    router.get('/categories', [HomeApiController, 'getCategories'])
+    router.get('/products', [HomeApiController, 'gatProducts'])
+    router.post('/cart/save', [HomeApiController, 'saveCart'])
+    router.get('/cart/load', [HomeApiController, 'getCart'])
+    
+}).prefix('/api')
+//**************Apis Router [End]******************/
+
+
+
 //**************Admin Router******************/
 
 router.group(() => {
@@ -70,6 +83,7 @@ router.group(() => {
         router.get('/product/change-status/:id',[ProductController,'changeStatus'])
         router.get('/product/change-is-top/:id',[ProductController,'setTopProduct'])
         router.get('/product/change-featured/:id',[ProductController,'setFeaturedProduct'])
+        router.get('/syncProductsWithAlgolia',[ProductController,'syncProductsWithAlgolia'])
         
 
     }).use(middleware.auth())

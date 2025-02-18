@@ -1,5 +1,7 @@
 import { Link } from "@inertiajs/react";
 import { useState,useEffect } from "react";
+import { Placeholder } from 'rsuite';
+import 'rsuite/Placeholder/styles/index.css';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
@@ -17,14 +19,18 @@ const HomeCategories = () => {
        const [categories, setCategories] = useState<Category[]>([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        fetch("/categories")
+        fetch("/api/categories")
             .then((response) => response.json())
-            .then((data) => {setCategories(data);console.log(data,'data')}) 
+            .then((data) => {setCategories(data);})
             .catch((err) => console.error("Error fetching data:", err));
             setLoading(false);
       }, []);
     if (loading) {
-        return <div>Loading...</div>;
+      return <div className="category-section-2">
+        <div className="container-fluid-lg">
+            <Placeholder.Grid rows={4} columns={4} active />
+        </div>
+    </div>;
     }
     return (     
      <>
@@ -46,8 +52,8 @@ const HomeCategories = () => {
                         loop={true} // Infinite loop
                     >
                     {categories.map((category) => (
-                            <SwiperSlide>
-                                <div>
+                            <SwiperSlide key={category.slug}>
+                                <div >
                                     <div className="shop-category-box border-0 wow fadeIn">
                                         <a href={category.slug} className="circle-1">
                                             <img src={category.image?category?.image:'/images/category_default_img.png'} className="img-fluid" alt={category?.name} />
