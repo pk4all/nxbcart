@@ -16,6 +16,7 @@ const ProductController = () => import('#controllers/admin/product_controller')
 const CategoryController = () => import('#controllers/admin/category_controller')
 const AttributesController = ()=>import('#controllers/admin/attributes_controller')
 const HomeApiController = ()=>import('#controllers/apis/home_api_controller')
+const CustomerApiController = ()=>import('#controllers/apis/customer_api_controller')
 
 // router.on('/').renderInertia('web/home')
 router.get('/', [HomeController, 'index'])
@@ -29,8 +30,12 @@ router.get('/csrf-token', async ({ response, request }) => {
 router.group(() => {
     router.get('/categories', [HomeApiController, 'getCategories'])
     router.get('/products', [HomeApiController, 'gatProducts'])
+
     router.post('/cart/save', [HomeApiController, 'saveCart'])
     router.get('/cart/load', [HomeApiController, 'getCart'])
+
+    router.post('/customer/send-otp', [CustomerApiController, 'sendOtp'])
+    router.post('/customer/verify-otp', [CustomerApiController, 'verifyOtp'])
     
 }).prefix('/api')
 //**************Apis Router [End]******************/

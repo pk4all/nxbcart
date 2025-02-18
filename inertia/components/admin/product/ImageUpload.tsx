@@ -46,7 +46,7 @@ const ImageUpload = () => {
               .then((data)=>data.json())
               .then((res)=>{
                 console.log(res,'res');
-              })
+              });
         }
     }
     const setDefault= (file:any)=>{

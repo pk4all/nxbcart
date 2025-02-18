@@ -119,7 +119,7 @@ function AddProductPage(){
                 },
             }
         );
-        console.log(data,'all data');
+        //console.log(data,'all data');
    };
   return (
     <>

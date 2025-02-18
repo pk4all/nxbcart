@@ -25518,7 +25518,10 @@
     width: 80%;
   }
 .rs-modal-body{
-  overflow: hidden !important;
+  overflow-x: hidden !important;
+}
+.f-w{
+  font-size: 28px;
 }
   /* .last-item-right{
     margin-left: auto;
