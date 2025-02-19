@@ -16624,7 +16624,7 @@
     -webkit-box-pack:center;
     -ms-flex-pack:center;
     justify-content:center;
-    background-image:url(../images/inner-page/coming-soon.jpg);
+    background-image:url(./images/coming-soon.jpg);
     background-position:center center;
     background-repeat:no-repeat;
     background-size:cover;
@@ -16756,7 +16756,7 @@
     color:#fff;
     font-weight:700
   }
-  >>.table:not(:last-child):last-child>* {
+  .table:not(:last-child):last-child>* {
     border-bottom:none
   }
   .inner-title {
@@ -25521,7 +25521,19 @@
   overflow-x: hidden !important;
 }
 .f-w{
-  font-size: 28px;
+  font-size: 28px !important;
+}
+.form-floating > label{
+  padding: .5rem 0.75rem !important;
+}
+.m-l-2{
+  margin-left: 0.2rem;
+}
+.user-menu-item{
+  font-size: 21px;
+}
+.service-section{
+  border-bottom: 1px dashed #c1c1c1;
 }
   /* .last-item-right{
     margin-left: auto;

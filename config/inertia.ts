@@ -25,6 +25,7 @@ const inertiaConfig = defineConfig({
       appName: 'NXB Kart',
       appLogo: 'NXB Kart',
       user: (ctx) => ctx.inertia.always(() => ctx.auth.user?.serialize()),
+      customer: (ctx) => ctx.inertia.always(() => ctx.auth.use('customer').user?.serialize()),
       errors: (ctx) => ctx.session.flashMessages.get('errors'),
   },
 

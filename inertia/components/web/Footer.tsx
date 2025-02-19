@@ -211,7 +211,7 @@ interface MainMenuProps {
               </div>
           </div>
       </div>
-  </footer>
+      </footer>
     );
   };
 

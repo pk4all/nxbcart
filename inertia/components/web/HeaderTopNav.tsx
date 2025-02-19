@@ -17,9 +17,9 @@ const HeaderTopNav = () => {
                             </span>
                         </button>
 
-                        <a href="/" className="web-logo nav-logo">
+                        <Link href="/" className="web-logo nav-logo">
                            <img src="/images/NXB_Logo_1.webp" />
-                        </a>
+                        </Link>
 
                         <div className="search-full">
                             <div className="input-group">

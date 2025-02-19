@@ -1,16 +1,23 @@
-import { Link } from "@inertiajs/react";
+import { Link,usePage } from "@inertiajs/react";
 import { useState,useEffect } from "react";
-import {Modal, ButtonToolbar, Button, Placeholder,Image} from 'rsuite'; 
+import {Modal, ButtonToolbar, Button,Loader, Placeholder,Image} from 'rsuite'; 
 import 'rsuite/Modal/styles/index.css';
+import 'rsuite/Loader/styles/index.css';
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import useCsrfToken from "../../../hooks/useCsrfToken";
+
 const HeaderLogin = () => {
     const [loading, setLoading] = useState(true);
+    const [btnLoading, setBtnLoading] = useState(false);
     const [open, setOpen] = useState(false);
     const [step, setStep] = useState(1);
     const [mobileNumber, setMobileNumber] = useState("");
+    const cd = usePage().props?.customer;
+    const [customer, setCustomer] = useState(cd);
+    //  const {customer} = usePage().props;
+     //console.log(customer,'page data')
     const handleOpen = () => {
         setOpen(true);
     };
@@ -45,52 +52,85 @@ const HeaderLogin = () => {
         register: registerOTP,
         handleSubmit: handleOTPSubmit,
         formState: { errors: otpErrors },
+        setError:setOtpErrors
       } = useForm({
         resolver: yupResolver(otpSchema),
         defaultValues: { otp: "",remember_me: "", },
       });
 
       const onMobileSubmit = async (data:any) => {
-        const response = await fetch('/api/customer/send-otp', {
+        try {
+            setBtnLoading(true);
+            const response = await fetch('/api/customer/send-otp', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  "X-CSRF-TOKEN": csrfToken
+                },
+                body: JSON.stringify(data),
+              });
+              let result = await response.json();
+
+              if (!response.ok) {
+                setMobileErrors("mobile", { type: "server", message: result.message || "Server error" });
+              }else{
+               setStep(2);
+               setMobileNumber(data?.mobile);
+              }
+              setBtnLoading(false);
+        } catch (error) {
+            setBtnLoading(false);
+            setMobileErrors("mobile", { type: "network", message: error.message || "Internal Server error" });
+        }
+      };
+
+      const onOtpSubmit = async (data:any) => {
+        data.mobile=mobileNumber;
+        try {
+            setBtnLoading(true);
+            const response = await fetch('/api/customer/verify-otp', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  "X-CSRF-TOKEN": csrfToken
+                },
+                body: JSON.stringify(data),
+              });
+              let result = await response.json();
+              if (!response.ok) {
+                setOtpErrors("otp", { type: "server", message: result.message || "Server error" });
+              }else{
+                setStep(1);
+                setMobileNumber('');
+                localStorage.setItem('token',result.token);
+                handleClose();
+                setCustomer(result.customer);
+              }
+              setBtnLoading(false);
+        } catch (error) {
+            setBtnLoading(false);
+            setOtpErrors("otp", { type: "network", message: error.message || "Internal Server error" });
+        }
+        console.log("Submitted otp Data:", data);
+      };
+
+      const logout = async () => {
+        const response = await fetch('/api/logout', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
               "X-CSRF-TOKEN": csrfToken
             },
-            body: JSON.stringify(data),
+            body: JSON.stringify({}),
           });
-          const result = await response.json();
           if (!response.ok) {
-            setMobileErrors("mobile", { type: "server", message: result.message || "Server error" });
+            setOtpErrors("otp", { type: "server", message:"Server error" });
           }else{
-            
+            localStorage.removeItem('token');
+            setCustomer(null);
           }
-      };
-
-      const onOtpSubmit = (data:any) => {
-        data.mobile=mobileNumber;
-        // Inertia.post('/api/customer/verify-otp',data,
-        //     {
-        //         preserveScroll: true,
-        //         headers: {
-        //             "X-CSRF-TOKEN": csrfToken,
-        //         },
-        //         onError: (error:any) => {
-        //             console.log("Validation Errors:", error);
-        //         },
-        //         onSuccess:(res:any)=>{
-        //             setMobileNumber(data.mobile);
-        //             setStep(2);
-        //         }
-        //     }
-        // );
-        console.log("Submitted Data:", data);
-      };
+      }
     useEffect(() => {
-        // fetch("/api/categories")
-        //     .then((response) => response.json())
-        //     .then((data) => {setCategories(data);setLoading(false);})
-        //     .catch((err) => console.error("Error fetching categories:", err));
         setLoading(false);
       }, []);
     if (loading) {
@@ -98,13 +138,48 @@ const HeaderLogin = () => {
     }
     return (     
         <>
-            <li>
-                <button className="header-icon" onClick={() => handleOpen()}>
-                    <i className="iconly-Profile icli"></i>
-                </button>
-            </li>
-        
-            <Modal size='md' open={open} onClose={handleClose}>
+            <li className=" onhover-dropdown">
+                {customer?(
+                    <>
+                    <Link className="header-icon" href={'/profile'}>
+                        <i className="iconly-Profile icli"></i>
+                    </Link>
+                    <div className="onhover-div onhover-div-login">
+                    <ul className="user-box-name">
+                        <li className="user-menu-item">
+                            <Link href="/profile">
+                                <i className="iconly-Profile icli"></i>
+                                <span className="m-l-2">Profile</span>
+                            </Link>
+                        </li>
+                        <li className="user-menu-item">
+                            <Link href="/profile">
+                                <i className="iconly-Buy icli"></i>
+                                <span className="m-l-2">Orders</span>
+                            </Link>
+                        </li>
+                        <li className="user-menu-item">
+                            <Link href="/setting">
+                                <i className="iconly-Setting icli"></i>
+                                <span className="m-l-2">Setting</span>
+                            </Link>
+                        </li>
+
+                        <li className="user-menu-item">
+                            <button className="" onClick={logout}>
+                                <i className="iconly-Logout icli"></i>
+                                <span className="m-l-2">Log out</span>
+                            </button>
+                        </li>
+                    </ul>
+                    </div>
+                    </>
+                ):(
+                    <>
+                    <button className="header-icon" onClick={() => handleOpen()}>
+                        <i className="iconly-Profile icli"></i>
+                    </button>
+                    <Modal size='md' open={open} onClose={handleClose}>
                 <Modal.Header>
                 {/* <Modal.Title>Welcome To Nextbuying</Modal.Title> */}
                 </Modal.Header>
@@ -122,11 +197,12 @@ const HeaderLogin = () => {
                         </div>
                         <div className="col-md-6">
                             <div className="log-in-box">
-                                <div className="log-in-title">
+                                
+                            { step==1 && (
+                                <> <div className="log-in-title">
                                     <h3>Welcome To NXB</h3>
                                     <h4>Log In Your Account</h4>
                                 </div>
-                            { step==1 && (
                                 <div className="input-box">
                                 <form className="row g-4" method="post" onSubmit={handleMobileSubmit(onMobileSubmit)}>
                                     <div className="col-12">
@@ -137,12 +213,22 @@ const HeaderLogin = () => {
                                         </div>
                                     </div>
                                     <div className="col-12">
-                                        <button className="btn btn-animation w-100 justify-content-center" type="submit">Send Otp</button>
+                                        <button className="btn btn-animation w-100 justify-content-center" type="submit" disabled={btnLoading}>{btnLoading?<Loader />:'Send Otp'}</button>
                                     </div>
                                 </form>
                                 </div>
+                                </>
                             )}
                              { step==2 && (
+                                <>    
+                                <div className="log-in-title">
+                                <h3 className="text-title">Please enter the one time password to verify your account</h3>
+                                    <h5 className="text-content">A code has been sent to <span>{mobileNumber}</span> 
+                                    <button className="m-l-2" type="button" onClick={()=>{setStep(1)}}>
+                                        <i className="fa fa-edit"></i>
+                                    </button>
+                                    </h5>
+                                </div>
                                 <div className="input-box">
                                 <form className="row g-4" method="post" onSubmit={handleOTPSubmit(onOtpSubmit)}>
                                     <div className="col-12">
@@ -163,16 +249,23 @@ const HeaderLogin = () => {
                                     </div>
 
                                     <div className="col-12">
-                                        <button className="btn btn-animation w-100 justify-content-center" type="submit">Submit</button>
+                                        <button className="btn btn-animation w-100 justify-content-center" type="submit" disabled={btnLoading}>{btnLoading?<Loader />:'Login'}</button>
                                     </div>
                                 </form>
                                 </div>
+                                </>
                              )}
                             </div>
-                        </div>
-                    </div>
-                </Modal.Body>
-            </Modal>
+                                </div>
+                            </div>
+                        </Modal.Body>
+                    </Modal>
+                    </>
+                    
+                )}
+            </li>
+        
+            
         </>
     );
   };

@@ -17,26 +17,30 @@ const CategoryController = () => import('#controllers/admin/category_controller'
 const AttributesController = ()=>import('#controllers/admin/attributes_controller')
 const HomeApiController = ()=>import('#controllers/apis/home_api_controller')
 const CustomerApiController = ()=>import('#controllers/apis/customer_api_controller')
-
+const CartApiController = ()=>import('#controllers/apis/cart_api_controller')
 // router.on('/').renderInertia('web/home')
-router.get('/', [HomeController, 'index'])
-router.get('/categories', [HomeController, 'getCategories'])
+router.get('/', [HomeController, 'index'])//.use(middleware.customer())
+
 
 router.get('/csrf-token', async ({ response, request }) => {
     return response.json({ csrfToken: request.csrfToken})
 })
+
+router.group(() => {
+    router.get('/cart', [HomeController, 'cart'])
+}).use(middleware.customer())
 
 //**************Apis Router******************/
 router.group(() => {
     router.get('/categories', [HomeApiController, 'getCategories'])
     router.get('/products', [HomeApiController, 'gatProducts'])
 
-    router.post('/cart/save', [HomeApiController, 'saveCart'])
-    router.get('/cart/load', [HomeApiController, 'getCart'])
+    router.post('/cart/save', [CartApiController, 'saveCart'])
+    router.get('/cart/load', [CartApiController, 'getCart'])
 
     router.post('/customer/send-otp', [CustomerApiController, 'sendOtp'])
     router.post('/customer/verify-otp', [CustomerApiController, 'verifyOtp'])
-    
+    router.post('/logout', [CustomerApiController, 'logout'])
 }).prefix('/api')
 //**************Apis Router [End]******************/
 
