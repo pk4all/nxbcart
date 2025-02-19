@@ -9,7 +9,7 @@ export default class HomeApiController {
             const {limit} = request.qs()
             const categories = await Category.query()
                         .whereNull('parentId')
-                        .preload('subCategories').limit(limit)
+                        .preload('subCategories').where('status',true).limit(limit)
             return response.json(categories)
         } catch (error) {
             return response.status(500).json({type:'error',error:error.message})
@@ -34,7 +34,7 @@ export default class HomeApiController {
             if(category>0){
                 productsQuery.where('category_id',category)
             }                        
-            const products = await productsQuery.orderBy('id','desc').limit(limit)
+            const products = await productsQuery.orderBy('id','desc').where('status',true).limit(limit)
             return response.json(products)
         } catch (error) {
             return response.status(500).json({type:'error',error:error.message})

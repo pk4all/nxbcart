@@ -17019,8 +17019,8 @@
     padding-top:0
   }
   .cart-table table tbody tr td {
-    padding:calc(16px + 6*(100vw - 320px)/1600) 16px;
-    min-width:calc(135px + 35*(100vw - 320px)/1600)
+    /* padding:calc(16px + 6*(100vw - 320px)/1600) 16px;
+    min-width:calc(135px + 35*(100vw - 320px)/1600) */
   }
   .cart-table table tbody tr td .table-title {
     margin-bottom:12px;

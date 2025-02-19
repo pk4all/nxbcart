@@ -13,7 +13,7 @@ export default class CartApiController {
                 customer.mobile_otp=otp.toString()
                 let c = await customer.save() 
                 if(c){
-                   // const res =  sendOtpMessage(mobile,otp)
+                   const res =  sendOtpMessage(mobile,otp)
                 }
                 return response.status(200).json({type:'error',message:'test msg'})
             }else{
@@ -39,12 +39,12 @@ export default class CartApiController {
                     )
                     // const loginCustomer = await auth.use('customer').getUserOrFail()
                     // const cu = await auth.use('customer').authenticate()
-                    customer.mobile_otp=''
+                    //customer.mobile_otp=''
                     customer.is_mobile_verified=true
                     customer.is_registered=true
-                    await customer.save()
                    // console.log('customer session',loginCustomer,cu)
-                    const token = await Customer.accessTokens.create(customer)
+                    const token = ''//await Customer.accessTokens.create(customer)
+                    await customer.save()
                     //return inertia.render('web/home',{token:token})
                     return response.status(200).json({type:'success',message:'Customer Validated',token:token,customer:customer})
                 }else{

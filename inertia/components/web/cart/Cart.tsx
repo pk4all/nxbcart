@@ -7,7 +7,7 @@ interface MainMenuProps {
     className?: string;
 }
   const Cart = ({ className }: MainMenuProps) => {
-    const {cart,removeFromCart,totalPrice} = useCart();
+    const {cart,removeFromCart,totalPrice,handleMinus,handlePlus,saveForLater} = useCart();
     const { currency } = useContext(CurrencyContext);
     return (
         <>
@@ -20,58 +20,31 @@ interface MainMenuProps {
                         {Object.values(cart).length>0 ? (
                             <table className="table">
                                 <tbody>
-                                
+                                {Object.entries(cart).map(([index,item])=>(
                                     <tr className="product-box-contain">
                                         <td className="product-detail">
                                             <div className="product border-0">
-                                                <a href="product-left.html" className="product-image">
-                                                    <img src="../assets/images/vegetable/product/1.png"
-                                                        className="img-fluid blur-up lazyload" alt="" />
-                                                </a>
+                                                <Link href={`/product/${item?.slug}`}className="product-image">
+                                                        {item.productImages[0]?.thum_url?<Image
+                                                            width={70}
+                                                            className="img-fluid"
+                                                            src={item.productImages[0]?.thum_url}
+                                                            placeholder={<Placeholder.Graph active />}
+                                                            alt={item?.name}
+                                                            />:<Placeholder.Graph active height={70} />
+                                                        }
+                                                </Link>
                                                 <div className="product-detail">
                                                     <ul>
                                                         <li className="name">
-                                                            <a href="product-left.html">Bell pepper</a>
+                                                           <Link href={`/product/${item?.slug}`}>{item?.name}</Link>
                                                         </li>
 
-                                                        <li className="text-content"><span className="text-title">Sold
-                                                                By:</span> Fresho</li>
+                                                        <li className="text-content"><span className="text-title">Sold By:</span> NXB </li>
 
                                                         <li className="text-content"><span
-                                                                className="text-title">Quantity</span> - 500 g</li>
-
-                                                        <li>
-                                                            <h5 className="text-content d-inline-block">Price :</h5>
-                                                            <span>$35.10</span>
-                                                            <span className="text-content">$45.68</span>
-                                                        </li>
-
-                                                        <li>
-                                                            <h5 className="saving theme-color">Saving : $20.68</h5>
-                                                        </li>
-
-                                                        <li className="quantity-price-box">
-                                                            <div className="cart_qty">
-                                                                <div className="input-group">
-                                                                    <button type="button" className="btn qty-left-minus"
-                                                                        data-type="minus" data-field="">
-                                                                        <i className="fa fa-minus ms-0"
-                                                                            aria-hidden="true"></i>
-                                                                    </button>
-                                                                    <input className="form-control input-number qty-input"
-                                                                        type="text" name="quantity" value="0" />
-                                                                    <button type="button" className="btn qty-right-plus"
-                                                                        data-type="plus" data-field="">
-                                                                        <i className="fa fa-plus ms-0"
-                                                                            aria-hidden="true"></i>
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-
-                                                        <li>
-                                                            <h5>Total: $35.10</h5>
-                                                        </li>
+                                                                className="text-title">Quantity</span> - {item?.quantity}</li>
+                                                        
                                                     </ul>
                                                 </div>
                                             </div>
@@ -79,8 +52,8 @@ interface MainMenuProps {
 
                                         <td className="price">
                                             <h4 className="table-title text-content">Price</h4>
-                                            <h5>$35.10 <del className="text-content">$45.68</del></h5>
-                                            <h6 className="theme-color">You Save : $20.68</h6>
+                                            <h5>{currency} {item?.productPrice?.sale_price} <del className="text-content">{currency} {item?.productPrice?.price}</del></h5>
+                                            <h6 className="theme-color">You Save :{currency}{item?.productPrice?.price-item?.productPrice?.sale_price}</h6>
                                         </td>
 
                                         <td className="quantity">
@@ -88,13 +61,12 @@ interface MainMenuProps {
                                             <div className="quantity-price">
                                                 <div className="cart_qty">
                                                     <div className="input-group">
-                                                        <button type="button" className="btn qty-left-minus"
+                                                        <button onClick={() => handleMinus(item)} type="button" className="btn qty-left-minus"
                                                             data-type="minus" data-field="">
                                                             <i className="fa fa-minus ms-0" aria-hidden="true"></i>
                                                         </button>
-                                                        <input className="form-control input-number qty-input" type="text"
-                                                            name="quantity" value="0"/>
-                                                        <button type="button" className="btn qty-right-plus"
+                                                        <input className="form-control input-number qty-input" type="text"  name="quantity" value={item?.quantity} readOnly/>
+                                                        <button onClick={() => handlePlus(item)} type="button" className="btn qty-right-plus"
                                                             data-type="plus" data-field="">
                                                             <i className="fa fa-plus ms-0" aria-hidden="true"></i>
                                                         </button>
@@ -105,16 +77,16 @@ interface MainMenuProps {
 
                                         <td className="subtotal">
                                             <h4 className="table-title text-content">Total</h4>
-                                            <h5>$35.10</h5>
+                                            <h5>{currency} {item?.productPrice?.sale_price*item?.quantity}</h5>
                                         </td>
 
                                         <td className="save-remove">
                                             <h4 className="table-title text-content">Action</h4>
-                                            <a className="save notifi-wishlist" href="javascript:void(0)">Save for later</a>
-                                            <a className="remove close_button" href="javascript:void(0)">Remove</a>
+                                            <button className="save notifi-wishlist" onClick={() => saveForLater(item)}><i className="fa fa-save"></i></button>
+                                            <button className="remove close_button" onClick={() => removeFromCart(item?.id)}><i className='fa fa-trash'></i></button>
                                         </td>
                                     </tr>
-
+                                ))}
                                 </tbody>
                             </table>
                             ):(
@@ -142,7 +114,7 @@ interface MainMenuProps {
                             <ul>
                                 <li>
                                     <h4>Subtotal</h4>
-                                    <h4 className="price">$125.65</h4>
+                                    <h4 className="price">{currency}{totalPrice}</h4>
                                 </li>
 
                                 <li>
@@ -152,29 +124,26 @@ interface MainMenuProps {
 
                                 <li className="align-items-start">
                                     <h4>Shipping</h4>
-                                    <h4 className="price text-end">$6.90</h4>
+                                    <h4 className="price text-end">{currency}6.90</h4>
                                 </li>
                             </ul>
                         </div>
 
                         <ul className="summery-total">
                             <li className="list-total border-top-0">
-                                <h4>Total (USD)</h4>
-                                <h4 className="price theme-color">$132.58</h4>
+                                <h4>Total ({currency})</h4>
+                                <h4 className="price theme-color">{currency}132.58</h4>
                             </li>
                         </ul>
 
                         <div className="button-group cart-button">
                             <ul>
                                 <li>
-                                    <button
-                                        className="btn btn-animation proceed-btn fw-bold">Process To Checkout</button>
+                                    <Link href="/checkout"  className="btn btn-animation proceed-btn fw-bold">Process To Checkout</Link>
                                 </li>
 
                                 <li>
-                                    <button
-                                        className="btn btn-light shopping-button text-dark">
-                                        <i className="fa-solid fa-arrow-left-long"></i>Return To Shopping</button>
+                                    <Link href="/products" className="btn btn-light shopping-button text-dark"><i className="fa-solid fa-arrow-left-long"></i> Return To Shopping</Link>
                                 </li>
                             </ul>
                         </div>

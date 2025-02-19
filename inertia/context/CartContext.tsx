@@ -12,6 +12,7 @@ interface CartContextType {
     handleMinus:(product: Product) => void;
     handlePlus:(product: Product) => void;
     addToWishList:(product: Product) => void;
+    saveForLater:(product: Product) => void;
     clearCart: () => void;
     totalPrice:number;
 }
@@ -130,6 +131,9 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const addToWishList = (product: Product) => {
            // console.log('added to wishlist',product?.id)
       };
+      const saveForLater = (product: Product) => {
+        // console.log('added to saveForLater',product?.id)
+      };
 
       useEffect(() => {
         loadCart();
@@ -140,7 +144,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     //console.log(totalPrice,'totalPrice',cart)
     return (
       <CartContext.Provider
-        value={{ cart, addToCart, removeFromCart, updateQuantity, clearCart, handleMinus, handlePlus,addToWishList,totalPrice }}
+        value={{ cart, addToCart, removeFromCart, updateQuantity, clearCart, handleMinus, handlePlus,addToWishList,totalPrice,saveForLater }}
       >
         {children}
       </CartContext.Provider>
