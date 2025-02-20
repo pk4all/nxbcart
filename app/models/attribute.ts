@@ -19,9 +19,9 @@ export default class Attribute extends BaseModel {
   @column()
   declare type: string
   @column()
-  declare required: string
+  declare required: boolean
   @column()
-  declare status:string
+  declare status:boolean
   @column({ serializeAs: 'user_id' })
   declare userId: number
 

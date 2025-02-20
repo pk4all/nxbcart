@@ -68,4 +68,35 @@ export default class AttributesController {
             return inertia.render('admin/attributes/add',{errors:{invalid:error.message}})
         }
     }
+    async changeStatus({response,params}:HttpContext){
+        const {id}=params
+        try {
+            const attribute = await Attribute.findOrFail(id)
+            if(attribute.status){
+                attribute.status = false
+            }else{
+                attribute.status = true
+            }
+            await attribute.save()
+            return response.json({message:'Set attribute status'})
+        } catch (error) {
+            return response.status(500).json({ message:error.message })
+        }
+    }
+
+    async changeRequired({response,params}:HttpContext){
+        const {id}=params
+        try {
+            const attribute = await Attribute.findOrFail(id)
+            if(attribute.required){
+                attribute.required = false
+            }else{
+                attribute.required = true
+            }
+            await attribute.save()
+            return response.json({message:'Set required'})
+        } catch (error) {
+            return response.status(500).json({ message:error.message })
+        }
+    }
 }

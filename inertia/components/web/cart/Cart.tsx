@@ -14,7 +14,7 @@ interface MainMenuProps {
          <section className="cart-section section-b-space">
         <div className="container-fluid-lg">
             <div className="row g-sm-5 g-3">
-                <div className="col-xxl-9">
+                <div className="col-xl-9">
                     <div className="cart-table">
                         <div className="table-responsive-xl">
                         {Object.values(cart).length>0 ? (
@@ -96,7 +96,7 @@ interface MainMenuProps {
                     </div>
                 </div>
 
-                <div className="col-xxl-3">
+                <div className="col-xl-3">
                     <div className="summery-box p-sticky">
                         <div className="summery-header">
                             <h3>Cart Total</h3>

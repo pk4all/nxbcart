@@ -22,7 +22,7 @@ function AddPage(){
         image:'',
         icon:'',
         description:'',
-        status:'active',
+        status:'1',
         short_index:'',
         invalid:''
     });

@@ -1,11 +1,14 @@
 //import { Head } from '@inertiajs/react'
 import { Link,usePage } from '@inertiajs/react';
 import AdminLayout from '../../../layouts/adminLayout.js';
-import Pagination from '../../../components/pagination/Pagination.js';
+import Pagination from '../../../components/pagination/Pagination';
 import { Attribute,PaginatedData } from '../../../types/index.js';
+import { Toggle } from 'rsuite';
+import 'rsuite/Toggle/styles/index.css';
 function ListPage(){
   const { attributes } = usePage<{ attributes: PaginatedData<Attribute> }>().props;
   const {data,meta} = attributes;
+  
   return (
     <>
       <div className='page-body'>
@@ -47,9 +50,47 @@ function ListPage(){
                                                   <td>
                                                      {row.type}
                                                   </td>
-                                                  <td>{row?.required}</td>
                                                   <td>
-                                                  {row?.status}
+                                                    {/* {
+                                                    row?.required?(
+                                                    <Toggle
+                                                        checkedChildren="Active"
+                                                        unCheckedChildren="Inactive" 
+                                                        defaultChecked
+                                                        color="yellow"
+                                                        onChange={()=>{
+                                                        fetch('/admin/attribute/change-required/'+row?.id)
+                                                        }}
+                                                />
+                                                    ):(
+                                                    <Toggle
+                                                        checkedChildren="Active"
+                                                        unCheckedChildren="Inactive" 
+                                                        color="yellow"
+                                                        onChange={()=>{
+                                                        fetch('/admin/attribute/change-required/'+row?.id)
+                                                        }}
+                                                    />
+                                                    )
+                                                } */}
+                                                <Toggle
+                                                    checkedChildren="Active"
+                                                    unCheckedChildren="Inactive"
+                                                    color="yellow"
+                                                    defaultChecked={!!row?.required} 
+                                                    onChange={() => fetch(`/admin/attribute/change-required/${row?.id}`)}
+                                                />
+                                                </td>
+                                                  <td>
+                                                  <Toggle
+                                                        checkedChildren="Active"
+                                                        unCheckedChildren="Inactive" 
+                                                        defaultChecked={!!row?.status}
+                                                        color="green"
+                                                        onChange={()=>{
+                                                        fetch('/admin/attribute/change-status/'+row?.id)
+                                                        }}
+                                                />
                                                   </td>
                                                   <td>
                                                     {/* <ul>

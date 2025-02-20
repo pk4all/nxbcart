@@ -20,7 +20,7 @@ export default class Category extends BaseModel {
   @column({ serializeAs: 'parent_id' })
   declare parentId: number
   @column()
-  declare status:string
+  declare status:boolean
 
   @column({ serializeAs: 'short_index' })
   declare shortIndex: number

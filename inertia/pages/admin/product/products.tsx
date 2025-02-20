@@ -2,7 +2,7 @@ import AdminLayout from '../../../layouts/adminLayout';
 import { Product,PaginatedData } from '../../../types';
 import { Link,usePage } from '@inertiajs/react';
 import Pagination from '../../../components/pagination/Pagination';
-import { Toggle, Stack } from 'rsuite';
+import { Toggle } from 'rsuite';
 import 'rsuite/Toggle/styles/index.css';
 import React, { useState } from "react";
 function ProductsPage(){
@@ -72,73 +72,37 @@ function ProductsPage(){
                                                           <td>{row?.productPrice?.sale_price||0}</td>
                                                           <td>{row?.productInventory?.qty||0}</td>
                                                           <td>
-                                                          {row?.top_product ? (
-                                                            <Toggle
+                                                          <Toggle
                                                               checkedChildren="Yes" 
                                                               unCheckedChildren="No" 
-                                                              defaultChecked 
+                                                              defaultChecked={!!row?.top_product}
                                                               color="red"
                                                               onChange={()=>{
                                                                 fetch('/admin/product/change-is-top/'+row?.id)
                                                               }}
                                                             />
-                                                          ):(
-                                                            <Toggle
-                                                              checkedChildren="Yes" 
-                                                              unCheckedChildren="No" 
-                                                              color="red"
-                                                              onChange={()=>{
-                                                                fetch('/admin/product/change-is-top/'+row?.id)
-                                                              }}
-                                                            />
-                                                          )}
                                                           </td>
                                                           <td>
-                                                            {row?.featured_product ? (
-                                                                <Toggle
+                                                          <Toggle
                                                             checkedChildren="Yes" 
                                                             unCheckedChildren="No" 
-                                                            defaultChecked  
+                                                            defaultChecked={!!row?.featured_product}
                                                             color="yellow"
                                                             onChange={()=>{
                                                               fetch('/admin/product/change-featured/'+row?.id)
                                                             }}
                                                           />
-                                                              ):(
-                                                                <Toggle
-                                                            checkedChildren="Yes" 
-                                                            unCheckedChildren="No"  
-                                                            color="yellow"
-                                                            onChange={()=>{
-                                                              fetch('/admin/product/change-featured/'+row?.id)
-                                                            }}
-                                                          />
-                                                          )}
-                                                          
                                                           </td>
                                                           <td>
-                                                            {
-                                                              row?.status?(
-                                                                <Toggle
-                                                                  checkedChildren="Active"
-                                                                  unCheckedChildren="Inactive" 
-                                                                  defaultChecked
-                                                                  color="green"
-                                                                  onChange={()=>{
-                                                                    fetch('/admin/product/change-status/'+row?.id)
-                                                                  }}
-                                                            />
-                                                              ):(
-                                                                <Toggle
-                                                                  checkedChildren="Active"
-                                                                  unCheckedChildren="Inactive" 
-                                                                  color="green"
-                                                                  onChange={()=>{
-                                                                    fetch('/admin/product/change-status/'+row?.id)
-                                                                  }}
-                                                                />
-                                                              )
-                                                            }
+                                                          <Toggle
+                                                              checkedChildren="Active"
+                                                              unCheckedChildren="Inactive" 
+                                                              defaultChecked={!!row?.status}
+                                                              color="green"
+                                                              onChange={()=>{
+                                                                fetch('/admin/product/change-status/'+row?.id)
+                                                              }}
+                                                          />
                                                           </td>
                                                           <td>
                                                           <ul>

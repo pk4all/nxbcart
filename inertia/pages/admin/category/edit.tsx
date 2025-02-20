@@ -17,6 +17,7 @@ function EditPage(){
     const [parentCategories, setParentCategories] = useState([]);
     const csrfToken = useCsrfToken();
     const {category} = usePage<{ category: Category}>().props;
+    console.log(category,'category')
     const { data, setData, errors, post, processing } = useForm({
         id:category.id||'',
         parent_id:category?.parent_id||'',

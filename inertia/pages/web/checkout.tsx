@@ -3,19 +3,19 @@ import WebLayout from '../../layouts/webLayout';
 import CartHeader from '../../components/web/cart/CartHeader';
 import Cart from '../../components/web/cart/Cart';
 import ServiceSection from '../../components/web/ServiceSection';
-function CartPage() {
+function CheckoutPage() {
   return (
     <>
-      <Head title="Cart Page" />
-      <CartHeader />
-      <Cart />
+      <Head title="Checkout Page" />
+      <CartHeader title='Checkout' />
+      
       <ServiceSection />
     </>
   )
 }
 
-CartPage.layout = (page: React.ReactNode) => (
-  <WebLayout title="NXB Home Page " children={page} />
+CheckoutPage.layout = (page: React.ReactNode) => (
+  <WebLayout title="NXB Check Page " children={page} />
 );
 
-export default CartPage;
+export default CheckoutPage;

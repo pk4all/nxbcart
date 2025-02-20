@@ -11,4 +11,7 @@ export default class HomeController {
     async cart({inertia}: HttpContext){
         return inertia.render('web/cart')
     }
+    async checkout({inertia}: HttpContext){
+        return inertia.render('web/checkout')
+    }
 }

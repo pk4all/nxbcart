@@ -3,6 +3,8 @@ import { Link,usePage } from '@inertiajs/react';
 import AdminLayout from '../../../layouts/adminLayout';
 import Pagination from '../../../components/pagination/Pagination';
 import { Category,PaginatedData } from '../../../types';
+import { Toggle } from 'rsuite';
+import 'rsuite/Toggle/styles/index.css';
 function ListPage(){
   const { categories } = usePage<{ categories: PaginatedData<Category> }>().props;
   const {data,meta} = categories;
@@ -47,7 +49,15 @@ function ListPage(){
                                                     </div>
                                                 </td>
                                                 <td>
-                                                {row?.status}
+                                                <Toggle
+                                                    checkedChildren="Active"
+                                                    unCheckedChildren="Inactive" 
+                                                    defaultChecked={!!row?.status}
+                                                    color="green"
+                                                    onChange={()=>{
+                                                    fetch('/admin/category/change-status/'+row?.id)
+                                                    }}
+                                                />
                                                 </td>
                                                 <td>{row?.short_index}</td>
                                                 <td>

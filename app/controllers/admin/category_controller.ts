@@ -138,5 +138,19 @@ export default class CategoryController {
             return inertia.render('admin/category/add',{errors:{invalid:error.message}})
         }
     }
-    
+    async changeStatus({response,params}:HttpContext){
+            const {id}=params
+        try {
+            const category = await Category.findOrFail(id)
+            if(category.status){
+                category.status = false
+            }else{
+                category.status = true
+            }
+            await category.save()
+            return response.json({message:'Set category status'})
+        } catch (error) {
+            return response.status(500).json({ message:error.message })
+        }
+    }
 }

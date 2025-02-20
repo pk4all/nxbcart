@@ -9,7 +9,7 @@ export default class HomeApiController {
             const {limit} = request.qs()
             const categories = await Category.query()
                         .whereNull('parentId')
-                        .preload('subCategories').where('status',true).limit(limit)
+                        .preload('subCategories').where('status','active').limit(limit)
             return response.json(categories)
         } catch (error) {
             return response.status(500).json({type:'error',error:error.message})

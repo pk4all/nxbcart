@@ -18,6 +18,7 @@ export default class HomeApiController {
     async getCart({request,response,session}:HttpContext){
         const sessionId = session.sessionId
         try {
+            await redis.set(`cart:${sessionId}`,JSON.stringify([]))
             const cart = await redis.get(`cart:${sessionId}`)
             return response.status(200).json({ cart: cart ? JSON.parse(cart) : [] })
         } catch (error) {

@@ -10,15 +10,15 @@ export function fileSize(size: number) {
 
 export function statusOpt(){
   return [
-    { value: 'active', label: 'Active' },
-    { value: 'inactive', label: 'Inactive' }
+    { value: "1", label: 'Active' },
+    { value: "0", label: 'Inactive' }
   ];
 }
 
 export function requiredOpt(){
   return [
-    { value: 'no', label: 'No' },
-    { value: 'yes', label: 'Yes' }
+    { value: "0", label: 'No' },
+    { value: "1", label: 'Yes' }
   ];
 }
 

@@ -21,13 +21,15 @@ const CartApiController = ()=>import('#controllers/apis/cart_api_controller')
 // router.on('/').renderInertia('web/home')
 router.get('/', [HomeController, 'index'])//.use(middleware.customer())
 router.get('/cart', [HomeController, 'cart'])
+router.get('/checkout', [HomeController, 'checkout'])
 
 router.get('/csrf-token', async ({ response, request }) => {
     return response.json({ csrfToken: request.csrfToken})
 })
 
 router.group(() => {
-    
+
+
 }).use(middleware.customer())
 
 //**************Apis Router******************/
@@ -71,9 +73,12 @@ router.group(() => {
         router.post('/category/add', [CategoryController, 'saveCategory'])
         router.post('/category/edit/:id', [CategoryController, 'editCategory'])
         router.get('/categories', [CategoryController, 'categories'])
+        router.get('/category/change-status/:id', [CategoryController, 'changeStatus'])
 
         router.get('/add-new-attributes', [AttributesController, 'add'])
         router.get('/attributes', [AttributesController, 'attributes'])
+        router.get('/attribute/change-status/:id', [AttributesController, 'changeStatus'])
+        router.get('/attribute/change-required/:id', [AttributesController, 'changeRequired'])
         router.get('/attributes/:category', [AttributesController, 'getAttributes'])
         
 

@@ -1,8 +1,9 @@
 import { Link } from '@inertiajs/react';
 interface MainMenuProps {
     className?: string;
+    title?:string
 }
-  const CartHeader = ({ className }: MainMenuProps) => {
+  const CartHeader = ({ className,title }: MainMenuProps) => {
     return (
         <>
          <section className="breadscrumb-section pt-0">
@@ -10,7 +11,7 @@ interface MainMenuProps {
             <div className="row">
                 <div className="col-12">
                     <div className="breadscrumb-contain">
-                        <h2>Cart</h2>
+                        <h2>{title?title:'Cart'}</h2>
                         <nav>
                             <ol className="breadcrumb mb-0">
                                 <li className="breadcrumb-item">
@@ -18,7 +19,7 @@ interface MainMenuProps {
                                         <i className="fa-solid fa-house"></i>
                                     </Link>
                                 </li>
-                                <li className="breadcrumb-item active" aria-current="page">Cart</li>
+                                <li className="breadcrumb-item active" aria-current="page">{title?title:'Cart'}</li>
                             </ol>
                         </nav>
                     </div>
