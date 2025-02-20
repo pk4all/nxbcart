@@ -41,8 +41,8 @@ export interface Attribute {
   slug: string;
   type:string;
   category_id:string;
-  required:string;
-  status:string;
+  required:number;
+  status:number;
   category:Category
 }
 

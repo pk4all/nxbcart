@@ -1,6 +1,7 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column,hasMany } from '@adonisjs/lucid/orm'
 import type { HasMany } from '@adonisjs/lucid/types/relations'
+import Attribute from '#models/attribute'
 
 export default class Category extends BaseModel {
   @column({ isPrimary: true })
@@ -35,4 +36,7 @@ export default class Category extends BaseModel {
 
   @hasMany(() => Category, { foreignKey: 'parentId' })
   public subCategories!: HasMany<typeof Category>
+
+  // @hasMany(() => Attribute, { foreignKey: 'category_id' })
+  // public attributes!: HasMany<typeof Attribute>
 }

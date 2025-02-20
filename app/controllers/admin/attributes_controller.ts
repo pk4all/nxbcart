@@ -7,12 +7,13 @@ export default class AttributesController {
                     const page = request.input('page', 1)
                     const limit =10
                     const attributes = await Attribute.query().preload('category').orderBy('id','desc').paginate(page,limit)
-                    //console.log(attributes,'attributes');
+                    //console.log(attributes.serialize(),'attributes');
                     attributes.baseUrl('/admin/attributes')
                     return inertia.render('admin/attributes/list',{
                         attributes:attributes.serialize()
                     })
                 } catch (error) {
+                    console.log(error.message,'error');
                     return inertia.render('admin/attributes/list',{
                         errors:{
                             invalid:error.message
@@ -27,7 +28,7 @@ export default class AttributesController {
         try {
             const attributes = await Attribute.query().preload('attributesOptions').where(query=>{
                 query.where('category_id',category).orWhereNull('category_id')
-            }).where('status','active').orderBy('id','desc')
+            }).where('status',true).orderBy('id','desc')
 
             const transformedAttributes = attributes.map(attr => ({
                 ...attr.toJSON(),

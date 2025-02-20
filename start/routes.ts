@@ -9,15 +9,26 @@
 
 import router from '@adonisjs/core/services/router'
 import { middleware } from '#start/kernel'
-const AuthController = () => import('#controllers/admin/auth_controller')
+
+/*================== Frondend Controllers================================ */
 const HomeController = () => import('#controllers/home_controller')
+
+/*================== Admin Controllers================================ */
+const AuthController = () => import('#controllers/admin/auth_controller')
 const DashboardController = () => import('#controllers/admin/dashboard_controller')
 const ProductController = () => import('#controllers/admin/product_controller')
 const CategoryController = () => import('#controllers/admin/category_controller')
 const AttributesController = ()=>import('#controllers/admin/attributes_controller')
+const CouponController = () => import('#controllers/admin/coupons_controller')
+const LocationsController = ()=>import('#controllers/admin/locations_controller')
+
+/*================== Apis Controllers================================ */
 const HomeApiController = ()=>import('#controllers/apis/home_api_controller')
 const CustomerApiController = ()=>import('#controllers/apis/customer_api_controller')
 const CartApiController = ()=>import('#controllers/apis/cart_api_controller')
+
+
+
 // router.on('/').renderInertia('web/home')
 router.get('/', [HomeController, 'index'])//.use(middleware.customer())
 router.get('/cart', [HomeController, 'cart'])
@@ -99,6 +110,19 @@ router.group(() => {
         router.get('/product/change-featured/:id',[ProductController,'setFeaturedProduct'])
         router.get('/syncProductsWithAlgolia',[ProductController,'syncProductsWithAlgolia'])
         
+        router.get('/coupons', [CouponController, 'list'])
+        router.get('/create-coupon', [CouponController, 'add'])
+        router.get('/edit-coupon/:id', [CouponController, 'edit'])
+        router.post('/coupon/save-coupon', [CouponController, 'save'])
+        router.post('/coupon/update-coupon/:id', [CouponController, 'update'])
+        router.get('/coupon/change-status/:id', [CouponController, 'changeStatus'])
+
+        router.get('/locations/countries',[LocationsController,'countries'])
+        router.get('/locations/states',[LocationsController,'states'])
+        router.get('/locations/districts',[LocationsController,'districts'])
+        router.get('/locations/cities',[LocationsController,'cities'])
+        router.get('/locations/pincodes',[LocationsController,'pincodes'])
+
 
     }).use(middleware.auth())
 }).prefix('/admin')

@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column,hasMany,belongsTo } from '@adonisjs/lucid/orm'
-import type { HasMany,BelongsTo } from '@adonisjs/lucid/types/relations'
+import { BaseModel, column,hasMany,belongsTo, hasOne } from '@adonisjs/lucid/orm'
+import type { HasMany,BelongsTo, HasOne } from '@adonisjs/lucid/types/relations'
 import AttributesOption from '#models/attributes_option'
 import slugify from 'slugify'
 import Category from '#models/category'
@@ -36,4 +36,7 @@ export default class Attribute extends BaseModel {
 
   @belongsTo(() => Category, { foreignKey: 'category_id' })
   public category!: BelongsTo<typeof Category>
+
+  // @hasOne(() => Category, { foreignKey: 'categoryId' })
+  // public category!: HasOne<typeof Category>
 }

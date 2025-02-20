@@ -44,38 +44,19 @@ function ListPage(){
                                                 <tr key={'row_'+indx}>
                                                     
                                                 <td>{indx+1}</td>
-                                                <td>{row.category?row?.category?.name:'NA'}</td>
+                                                <td>
+                                                    
+                                                    {row.category?row?.category?.name:'NA'}
+                                                </td>
                                                   <td>{row?.name}</td>
                                                   <td>{row?.slug}</td>
                                                   <td>
                                                      {row.type}
                                                   </td>
                                                   <td>
-                                                    {/* {
-                                                    row?.required?(
-                                                    <Toggle
-                                                        checkedChildren="Active"
-                                                        unCheckedChildren="Inactive" 
-                                                        defaultChecked
-                                                        color="yellow"
-                                                        onChange={()=>{
-                                                        fetch('/admin/attribute/change-required/'+row?.id)
-                                                        }}
-                                                />
-                                                    ):(
-                                                    <Toggle
-                                                        checkedChildren="Active"
-                                                        unCheckedChildren="Inactive" 
-                                                        color="yellow"
-                                                        onChange={()=>{
-                                                        fetch('/admin/attribute/change-required/'+row?.id)
-                                                        }}
-                                                    />
-                                                    )
-                                                } */}
                                                 <Toggle
-                                                    checkedChildren="Active"
-                                                    unCheckedChildren="Inactive"
+                                                    checkedChildren="Required"
+                                                    unCheckedChildren="Optional"
                                                     color="yellow"
                                                     defaultChecked={!!row?.required} 
                                                     onChange={() => fetch(`/admin/attribute/change-required/${row?.id}`)}

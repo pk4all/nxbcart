@@ -97,137 +97,53 @@ const AdminNavBar = () => {
                                     </ul>
                                 </li>
 
+                                
+
                                 <li className="sidebar-list" onClick={()=>toggleVisibility(3)}>
-                                    <a className="sidebar-link sidebar-title" href="javascript:void(0)">
-                                        <i className="ri-user-3-line"></i>
-                                        <span>Users</span>
-                                    </a>
-                                    <ul className={`sidebar-submenu ${menuIndex==3 ? '' : 'hide'}`}>
-                                        <li>
-                                            <a href="all-users">All users</a>
-                                        </li>
-                                        <li>
-                                            <a href="add-new-user">Add new user</a>
-                                        </li>
-                                    </ul>
-                                </li>
-
-                                <li className="sidebar-list" onClick={()=>toggleVisibility(4)}>
-                                    <a className="sidebar-link sidebar-title" href="javascript:void(0)">
-                                        <i className="ri-user-3-line"></i>
-                                        <span>Roles</span>
-                                    </a>
-                                    <ul className={`sidebar-submenu ${menuIndex==4 ? '' : 'hide'}`}>
-                                        <li>
-                                            <a href="role">All roles</a>
-                                        </li>
-                                        <li>
-                                            <a href="create-role">Create Role</a>
-                                        </li>
-                                    </ul>
-                                </li>
-
-                                <li className="sidebar-list">
-                                    <a className="sidebar-link sidebar-title link-nav" href="media.html">
-                                        <i className="ri-price-tag-3-line"></i>
-                                        <span>Media</span>
-                                    </a>
-                                </li>
-
-                                <li className="sidebar-list" onClick={()=>toggleVisibility(5)}>
-                                    <a className="sidebar-link sidebar-title" href="javascript:void(0)">
-                                        <i className="ri-archive-line"></i>
-                                        <span>Orders</span>
-                                    </a>
-                                    <ul className={`sidebar-submenu ${menuIndex==5 ? '' : 'hide'}`}>
-                                        <li>
-                                            <a href="order-list">Order List</a>
-                                        </li>
-                                        <li>
-                                            <a href="order-detail">Order Detail</a>
-                                        </li>
-                                        <li>
-                                            <a href="order-tracking">Order Tracking</a>
-                                        </li>
-                                    </ul>
-                                </li>
-
-                                <li className="sidebar-list" onClick={()=>toggleVisibility(6)}>
-                                    <a className="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
-                                        <i className="ri-focus-3-line"></i>
-                                        <span>Localization</span>
-                                    </a>
-                                    <ul className={`sidebar-submenu ${menuIndex==6 ? '' : 'hide'}`}>
-                                        <li>
-                                            <a href="translation">Translation</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="currency-rates">Currency Rates</a>
-                                        </li>
-                                    </ul>
-                                </li>
-
-                                <li className="sidebar-list" onClick={()=>toggleVisibility(7)}>
                                     <a className="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
                                         <i className="ri-price-tag-3-line"></i>
                                         <span>Coupons</span>
+                                        <div className="according-menu">
+                                            <i className={`${menuIndex==3 ? 'ri-arrow-down-s-line' : 'ri-arrow-right-s-line'}`}></i>
+                                        </div>
                                     </a>
-                                    <ul className={`sidebar-submenu ${menuIndex==7 ? '' : 'hide'}`}>
+                                    <ul className={`sidebar-submenu ${menuIndex==3 ? '' : 'hide'}`}>
                                         <li>
-                                            <a href="coupon-list">Coupon List</a>
+                                            <Link href="/admin/coupons">Coupon List</Link>
                                         </li>
 
                                         <li>
-                                            <a href="create-coupon">Create Coupon</a>
+                                            <Link href="/admin/create-coupon">Create Coupon</Link>
                                         </li>
                                     </ul>
                                 </li>
-
-                                <li className="sidebar-list">
-                                    <a className="sidebar-link sidebar-title link-nav" href="taxes">
-                                        <i className="ri-price-tag-3-line"></i>
-                                        <span>Tax</span>
-                                    </a>
-                                </li>
-
-                                <li className="sidebar-list">
-                                    <a className="sidebar-link sidebar-title link-nav" href="product-review">
-                                        <i className="ri-star-line"></i>
-                                        <span>Product Review</span>
-                                    </a>
-                                </li>
-
-                                <li className="sidebar-list">
-                                    <a className="sidebar-link sidebar-title link-nav" href="support-ticket">
-                                        <i className="ri-phone-line"></i>
-                                        <span>Support Ticket</span>
-                                    </a>
-                                </li>
-                                <li className="sidebar-list" onClick={()=>toggleVisibility(8)}>
+                                <li className="sidebar-list" onClick={()=>toggleVisibility(4)}>
                                     <a className="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
-                                        <i className="ri-settings-line"></i>
-                                        <span>Settings</span>
+                                        <i className="ri-focus-3-line"></i>
+                                        <span>Locations</span>
+                                        <div className="according-menu">
+                                            <i className={`${menuIndex==4 ? 'ri-arrow-down-s-line' : 'ri-arrow-right-s-line'}`}></i>
+                                        </div>
                                     </a>
-                                    <ul className={`sidebar-submenu ${menuIndex==8 ? '' : 'hide'}`}>
+                                    <ul className={`sidebar-submenu ${menuIndex==4 ? '' : 'hide'}`}>
                                         <li>
-                                            <a href="profile-setting">Profile Setting</a>
+                                            <Link href="/admin/locations/pincodes">Pincodes</Link>
                                         </li>
+                                        <li>
+                                            <Link href="/admin/locations/cities">Cities</Link>
+                                        </li>
+                                        <li>
+                                            <Link href="/admin/locations/districts">Districts</Link>
+                                        </li>
+                                        <li>
+                                            <Link href="/admin/locations/states">States</Link>
+                                        </li>
+                                        
+                                        <li>
+                                            <Link href="/admin/locations/countries">Countries</Link>
+                                        </li>
+                                        
                                     </ul>
-                                </li>
-
-                                <li className="sidebar-list">
-                                    <a className="sidebar-link sidebar-title link-nav" href="reports">
-                                        <i className="ri-file-chart-line"></i>
-                                        <span>Reports</span>
-                                    </a>
-                                </li>
-
-                                <li className="sidebar-list">
-                                    <a className="sidebar-link sidebar-title link-nav" href="list-page">
-                                        <i className="ri-list-check"></i>
-                                        <span>List Page</span>
-                                    </a>
                                 </li>
                             </ul>
                         </div>
