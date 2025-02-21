@@ -41,6 +41,14 @@ export default class Product extends BaseModel {
   @column()
   declare sku: string;
 
+  @column()
+  declare HSN: string;
+  @column()
+  declare GST: string;
+
+  @column({serializeAs:'product_code'})
+  declare product_code: string;
+
   @column({serializeAs:"user_id"})
   declare user_id:number;
   @column({serializeAs:"category_id"})

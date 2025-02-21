@@ -135,7 +135,7 @@ function AddPage(){
                                     <select {...register("discount_type")} className="js-example-basic-single form-control w-100" name="stock_status"
                                 onChange={(e) => setValue("discount_type", e.target.value)}
                                 >
-                                    <option value="">Select Status</option>
+                                    <option value="">Select Type</option>
                                     <option value={'percentage'}>Percentage</option>
                                     <option value={'fixed'}>Fixed</option>
                                 </select>

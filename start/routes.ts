@@ -119,9 +119,14 @@ router.group(() => {
 
         router.get('/locations/countries',[LocationsController,'countries'])
         router.get('/locations/states',[LocationsController,'states'])
+        router.get('/locations/states/add',[LocationsController,'addState'])
         router.get('/locations/districts',[LocationsController,'districts'])
         router.get('/locations/cities',[LocationsController,'cities'])
         router.get('/locations/pincodes',[LocationsController,'pincodes'])
+        router.get('/locations/get-countries',[LocationsController,'getCountries'])
+        router.post('/locations/save-state',[LocationsController,'saveState'])
+
+        router.get('/locations/get-pincodes',[LocationsController,'getpincodes'])
 
 
     }).use(middleware.auth())

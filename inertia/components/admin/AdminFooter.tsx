@@ -7,7 +7,7 @@ interface MainMenuProps {
         <footer className="footer">
             <div className="row">
                 <div className="col-md-12 footer-copyright text-center">
-                    <p className="mb-0">Copyright 2024 © NXBKart</p>
+                    <p className="mb-0">Copyright 2025 © NXBKart</p>
                 </div>
             </div>
         </footer>
