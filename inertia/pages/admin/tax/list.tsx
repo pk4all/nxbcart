@@ -6,11 +6,11 @@ import { Category,PaginatedData } from '../../../types';
 import { Toggle } from 'rsuite';
 import 'rsuite/Toggle/styles/index.css';
 function ListPage(){
-  const { coupons } = usePage<{ coupons: PaginatedData<any> }>().props;
-  const {data,meta} = coupons;
+  const { taxes } = usePage<{ taxes: PaginatedData<any> }>().props;
+  const {data,meta} = taxes;
   return (
     <>
-    <Head title="All Coupons Information" />
+    <Head title="All taxes Information" />
       <div className='page-body'>
             <div className="container-fluid">
                 <div className="row">
@@ -18,8 +18,8 @@ function ListPage(){
                         <div className="card">
                             <div className="card-body">
                                 <div className="title-header option-title">
-                                    <h5>All Coupons</h5>
-                                        <Link href="/admin/create-coupon" className="align-items-center btn btn-theme">
+                                    <h5>All Taxes</h5>
+                                        <Link href="/admin/taxes/add" className="align-items-center btn btn-theme">
                                             <i className="ri-add-line"></i>Add New
                                         </Link>
                                 </div>
@@ -29,11 +29,8 @@ function ListPage(){
                                             <tr>
                                                 <th>#</th>
                                                 <th>Name</th>
-                                                <th>Code</th>
-                                                <th>Discount</th>
-                                                <th>Discount Type</th>
+                                                <th>Percentage</th>
                                                 <th>Status</th>
-                                                <th>Auto Apply</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -43,13 +40,8 @@ function ListPage(){
                                             data.map((row,indx)=>(
                                             <tr key={'row_'+indx}>
                                             <td>{indx+1}</td>
-                                                <td>{row?.name}</td>
-                                                <td>{row?.code}</td>
-                                                <td>
-                                                   {row?.discount}
-                                                </td>
-                                                
-                                                <td>{row?.discountTypeText}</td>
+                                                <td>{row?.tax_name}</td>
+                                                <td>{row?.tax_percentage} %</td>
                                                 <td>
                                                 <Toggle
                                                     checkedChildren="Active"
@@ -57,30 +49,14 @@ function ListPage(){
                                                     defaultChecked={!!row?.status}
                                                     color="green"
                                                     onChange={()=>{
-                                                        fetch('/admin/coupon/change-status/'+row?.id)
-                                                    }}
-                                                />
-                                                </td>
-                                                <td>
-                                                <Toggle
-                                                    checkedChildren="Yes"
-                                                    unCheckedChildren="No" 
-                                                    defaultChecked={!!row?.auto_apply}
-                                                    color="green"
-                                                    onChange={()=>{
-                                                        fetch('/admin/coupon/change-auto-apply/'+row?.id).then(res=>res.json()).then(data=>{
-                                                            if(data.type=='error'){
-                                                                alert(data.message);
-                                                               // return false;
-                                                            }
-                                                        })
+                                                        fetch('/admin/taxes/change-status/'+row?.id)
                                                     }}
                                                 />
                                                 </td>
                                                 <td>
                                                 <ul>
                                                     <li>
-                                                        <Link href={"/admin/edit-coupon/"+row?.id}>
+                                                        <Link href={"/admin/taxes/edit/"+row?.id}>
                                                             <i className="ri-pencil-line"></i>
                                                         </Link>
                                                     </li>
@@ -93,7 +69,7 @@ function ListPage(){
                                 </div>
                                 <div className='dataTables_wrapper'>
                                     <div className="dataTables_paginate" id="table_id_paginate">
-                                        <Pagination meta={meta} baseUrl={'/admin/coupons'} />
+                                        <Pagination meta={meta} baseUrl={'/admin/taxes'} />
                                     </div>
                                 </div>
                             </div>

@@ -17,6 +17,7 @@ export default class extends BaseSchema {
       table.dropColumn('product_code')
       table.dropColumn('HSN')
       table.dropColumn('GST')
+      table.dropColumn('product_type')
     })
   }
 }

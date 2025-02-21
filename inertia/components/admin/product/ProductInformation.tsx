@@ -8,6 +8,7 @@ import { useFormContext} from "react-hook-form";
 import slugify from "slugify";
 interface ProductFormData {
     productInformation: {
+        product_type:string,
         name:string, 
         slug: string, 
         category_id:string,
@@ -21,7 +22,8 @@ const ProductInformation = ({setCategory}:any) => {
     const {
         register,
         formState: {errors},
-        setValue
+        setValue,
+        watch
       } = useFormContext<ProductFormData>();
 
     function handleChange(
@@ -76,6 +78,21 @@ const ProductInformation = ({setCategory}:any) => {
                 <div className="card-header-2">
                     <h5>Product Information</h5>
                 </div>
+                <div className="mb-4 row align-items-center">
+                            <label className="col-sm-3 col-form-label form-label-title">Product Type</label>
+                            <div className="col-sm-9">
+                                <select {...register("productInformation.product_type")} className="form-select w-100" name="stock_status"
+                                onChange={(e) => setValue("productInformation.product_type", e.target.value)}
+                                value={watch("productInformation.product_type")}
+                                >
+                                    <option value="">Select Type</option>
+                                    
+                                </select>
+                                {errors.productInformation?.product_type?.message && (
+                                    <p style={{ color: "red" }}>{errors.productInformation?.product_type?.message?.toString()}</p>
+                                )}
+                            </div>
+                        </div>
                     <div className="mb-4 row align-items-center">
                         <label className="form-label-title col-sm-3 mb-0">Product Name</label>
                         <div className="col-sm-9">

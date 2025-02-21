@@ -49,6 +49,10 @@ export default class Product extends BaseModel {
   @column({serializeAs:'product_code'})
   declare product_code: string;
 
+  @column({serializeAs:'product_type'})
+  declare product_type: string;
+  
+
   @column({serializeAs:"user_id"})
   declare user_id:number;
   @column({serializeAs:"category_id"})

@@ -21,7 +21,7 @@ const CategoryController = () => import('#controllers/admin/category_controller'
 const AttributesController = ()=>import('#controllers/admin/attributes_controller')
 const CouponController = () => import('#controllers/admin/coupons_controller')
 const LocationsController = ()=>import('#controllers/admin/locations_controller')
-
+const TaxesController = ()=>import('#controllers/admin/taxes_controller')
 /*================== Apis Controllers================================ */
 const HomeApiController = ()=>import('#controllers/apis/home_api_controller')
 const CustomerApiController = ()=>import('#controllers/apis/customer_api_controller')
@@ -116,6 +116,16 @@ router.group(() => {
         router.post('/coupon/save-coupon', [CouponController, 'save'])
         router.post('/coupon/update-coupon/:id', [CouponController, 'update'])
         router.get('/coupon/change-status/:id', [CouponController, 'changeStatus'])
+        router.get('/coupon/change-auto-apply/:id', [CouponController, 'changeAutoApply'])
+
+        router.get('/taxes', [TaxesController, 'list'])
+        router.get('/taxes/add', [TaxesController, 'add'])
+        router.get('/taxes/edit/:id', [TaxesController, 'edit'])
+        router.post('/taxes/save', [TaxesController, 'save'])
+        router.post('/taxes/update/:id', [TaxesController, 'update'])
+        router.get('/taxes/change-status/:id', [TaxesController, 'changeStatus'])
+        router.get('/taxes/get', [TaxesController, 'getTaxes'])
+        
 
         router.get('/locations/countries',[LocationsController,'countries'])
         router.get('/locations/states',[LocationsController,'states'])

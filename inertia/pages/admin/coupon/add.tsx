@@ -87,7 +87,7 @@ function AddPage(){
                                   </Link>
                               </div>
 
-                              <form className="theme-form theme-form-2 mega-form" onSubmit={handleSubmit(onSubmit)} >
+                              <form className="" onSubmit={handleSubmit(onSubmit)} >
                               <div className="mb-4 row align-items-center">
                                     <label className="form-label-title col-sm-3 mb-0">Coupon Name</label>
                                     <div className="col-sm-9">
@@ -132,7 +132,7 @@ function AddPage(){
                                 <div className="mb-4 row align-items-center">
                                     <label className="form-label-title col-sm-3 mb-0">Discount Type</label>
                                     <div className="col-sm-9">
-                                    <select {...register("discount_type")} className="js-example-basic-single form-control w-100" name="stock_status"
+                                    <select {...register("discount_type")} className="form-select w-100" name="stock_status"
                                 onChange={(e) => setValue("discount_type", e.target.value)}
                                 >
                                     <option value="">Select Type</option>

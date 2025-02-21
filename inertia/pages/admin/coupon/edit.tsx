@@ -86,7 +86,7 @@ function EditPage(){
                                   </Link>
                               </div>
 
-                              <form className="theme-form theme-form-2 mega-form" onSubmit={handleSubmit(onSubmit)} >
+                              <form className="" onSubmit={handleSubmit(onSubmit)} >
                               <div className="mb-4 row align-items-center">
                                     <label className="form-label-title col-sm-3 mb-0">Coupon Name</label>
                                     <div className="col-sm-9">

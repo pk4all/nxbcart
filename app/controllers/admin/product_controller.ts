@@ -103,6 +103,7 @@ export default class ProductController {
             const productPrice = data.productPrice
             const productSeo = data.productSEO
             const productInventory = data?.productInventory
+            const productTax = data?.productTax
 
             const productAttributes = data?.productAttributes
             let productAttributesData=[]
@@ -115,6 +116,8 @@ export default class ProductController {
                   }
             }
             productData.sku = productInventory.sku
+            productData.HSN = productTax.HSN
+            productData.GST = productTax.GST
             const product = await Product.create(productData,{client:trx})
             await product.related('productDescription').create(productDescription,{client:trx})
             await product.related('productShipping').create(productShipping,{client:trx})

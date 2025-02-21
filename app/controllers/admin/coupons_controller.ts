@@ -11,7 +11,7 @@ export default class CouponsController {
             coupons.baseUrl('/admin/coupons')
             return inertia.render('admin/coupon/list',{coupons:coupons.serialize()})
         } catch (error) {
-            return inertia.render('admin/coupon/add',{errors:{invalid:error.message}})
+            return inertia.render('admin/coupon/list',{errors:{invalid:error.message}})
         }
        
     }
@@ -68,6 +68,25 @@ export default class CouponsController {
             return response.json({message:'Status changed'})
         } catch (error) {
             return response.status(500).json({ message:error.message })
+        }
+    }
+
+    async changeAutoApply({response,params}:HttpContext){
+        const {id}=params
+        try {
+            const data = await Coupon.findOrFail(id)
+            if(data.min_order<=0){
+                return response.status(500).json({ type:'error',message:"Please set Minimum order value" }) 
+            }
+            if(data.auto_apply){
+                data.auto_apply = false
+            }else{
+                data.auto_apply = true
+            }
+            await data.save()
+            return response.json({message:'Auto Apply changed'})
+        } catch (error) {
+            return response.status(500).json({ message:error.message }) 
         }
     }
 }

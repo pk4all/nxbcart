@@ -46,7 +46,7 @@ const ProductInventory = () => {
                             <label className="col-sm-3 col-form-label form-label-title">Stock
                                 Status</label>
                             <div className="col-sm-9">
-                                <select {...register("productInventory.stock_status")} className="js-example-basic-single form-control w-100" name="stock_status"
+                                <select {...register("productInventory.stock_status")} className="form-select w-100" name="stock_status"
                                 onChange={(e) => setValue("productInventory.stock_status", e.target.value)}
                                 value={stockStatus}
                                 >

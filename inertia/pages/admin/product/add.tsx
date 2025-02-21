@@ -6,6 +6,7 @@ import ProductDescription from '../../../components/admin/product/ProductDescrip
 import ProductInformation from '../../../components/admin/product/ProductInformation';
 import ProductAttributes from '../../../components/admin/product/ProductAttributes';
 import ProductShipping from '../../../components/admin/product/ProductShipping';
+import ProductTax from '../../../components/admin/product/ProductTax';
 import ProductInventory from '../../../components/admin/product/ProductInventory';
 import ProductAdditionalInfo from '../../../components/admin/product/ProductAdditionalInfo';
 import ProductSEO from '../../../components/admin/product/ProductSEO';
@@ -19,16 +20,17 @@ function AddProductPage(){
     const csrfToken = useCsrfToken();
     const schema = yup.object({
         productInformation: yup.object({
-          name: yup.string().required("Name is required"),
-          slug: yup.string().required("Slug is required"),
-          category_id: yup.string().required("Category is required"),
-          sub_category_id: yup.string().required("Subcategory is required"),
-          model_name:yup.string().required("Model name is required"),
-          tags:yup.array().notRequired(),
-          warranty_summary:yup.string().notRequired(),
-          covered_in_warranty:yup.string().notRequired(),
-          sales_in_package:yup.string().notRequired(),
-          key_features:yup.string().notRequired(),
+            product_type:yup.string().required("Product type is required"),
+            name: yup.string().required("Name is required"),
+            slug: yup.string().required("Slug is required"),
+            category_id: yup.string().required("Category is required"),
+            sub_category_id: yup.string().required("Subcategory is required"),
+            model_name:yup.string().required("Model name is required"),
+            tags:yup.array().notRequired(),
+            warranty_summary:yup.string().notRequired(),
+            covered_in_warranty:yup.string().notRequired(),
+            sales_in_package:yup.string().notRequired(),
+            key_features:yup.string().notRequired(),
         }),
         productDescription:yup.object({
             description:yup.string().required("Description is required"),
@@ -57,6 +59,10 @@ function AddProductPage(){
             page_title:yup.string().required("Page title is required"),
             meta_description:yup.string().required("Meta description is required"),
             url_handle:yup.string().required("Url handle is required"),
+        }),
+        productTax:yup.object({
+            HSN:yup.string().required("HSN is required"),
+            GST:yup.string().required("GST is required"),
         })
       });
 
@@ -64,6 +70,7 @@ function AddProductPage(){
         resolver: yupResolver(schema),
         defaultValues: {
             productInformation: {
+                product_type:'',
                 name: "", 
                 slug: '', 
                 category_id:'',
@@ -102,8 +109,11 @@ function AddProductPage(){
                 page_title:'',
                 meta_description:'',
                 url_handle:''
+            },
+            productTax:{
+                HSN:'',
+                GST:'',
             }
-
         },
       });
 
@@ -138,6 +148,9 @@ function AddProductPage(){
                                     )}
                                     <ProductPrice />
                                     <ProductShipping />
+
+                                    <ProductTax />
+
                                     <ProductInventory />
                                     <ProductAdditionalInfo />
                                     <ProductSEO />

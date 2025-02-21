@@ -117,15 +117,34 @@ const AdminNavBar = () => {
                                         </li>
                                     </ul>
                                 </li>
+
                                 <li className="sidebar-list" onClick={()=>toggleVisibility(4)}>
                                     <a className="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
-                                        <i className="ri-focus-3-line"></i>
-                                        <span>Locations</span>
+                                        <i className="ri-price-tag-3-line"></i>
+                                        <span>Tax</span>
                                         <div className="according-menu">
                                             <i className={`${menuIndex==4 ? 'ri-arrow-down-s-line' : 'ri-arrow-right-s-line'}`}></i>
                                         </div>
                                     </a>
                                     <ul className={`sidebar-submenu ${menuIndex==4 ? '' : 'hide'}`}>
+                                        <li>
+                                            <Link href="/admin/taxes">Tax List</Link>
+                                        </li>
+                                        <li>
+                                            <Link href="/admin/taxes/add">Add Tax</Link>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li className="sidebar-list" onClick={()=>toggleVisibility(5)}>
+                                    <a className="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i className="ri-focus-3-line"></i>
+                                        <span>Locations</span>
+                                        <div className="according-menu">
+                                            <i className={`${menuIndex==5 ? 'ri-arrow-down-s-line' : 'ri-arrow-right-s-line'}`}></i>
+                                        </div>
+                                    </a>
+                                    <ul className={`sidebar-submenu ${menuIndex==5 ? '' : 'hide'}`}>
                                         <li>
                                             <Link href="/admin/locations/pincodes">Pincodes</Link>
                                         </li>

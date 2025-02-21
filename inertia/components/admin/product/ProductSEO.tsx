@@ -24,7 +24,7 @@ const {
     setValue,
     watch
 } = useFormContext<ProductFormData>();
-const productName = watch("productInformation.name");
+const productName = watch("productSEO.page_title");
 const productslug = watch("productInformation.slug");
 const productMetaDescription = watch("productSEO.meta_description");
 useEffect(()=>{
@@ -50,9 +50,12 @@ useEffect(()=>{
                                 {...register("productSEO.page_title")}
                                 className="form-control"
                                 type="text"
-                                value={productName}
+                                // value={productName}
                                 placeholder="Page title"
                                 />
+                                {errors.productSEO?.page_title?.message && (
+                                    <p style={{ color: "red" }}>{errors.productSEO?.page_title?.message?.toString()}</p>
+                                )}
                         </div>
                     </div>
 
@@ -64,6 +67,9 @@ useEffect(()=>{
                                     {...register("productSEO.meta_description")}
                                     className="form-control"
                                  ></textarea>
+                                 {errors.productSEO?.meta_description?.message && (
+                                    <p style={{ color: "red" }}>{errors.productSEO?.meta_description?.message?.toString()}</p>
+                                )}
                             </div>
                         </div>
 

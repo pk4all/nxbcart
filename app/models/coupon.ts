@@ -17,23 +17,25 @@ export default class Coupon extends BaseModel {
   @column()
   declare code: string
   @column({serializeAs:'discount_type'})
-  declare discountType: 'percentage' | 'fixed'
+  declare discount_type: 'percentage' | 'fixed'
   @column()
   declare discount: number
   @column({serializeAs:'max_discount'})
-  declare maxDiscount: number
+  declare max_discount: number
   @column({serializeAs:'min_order'})
-  declare minOrder: number
+  declare min_order: number
   @column({serializeAs:'usage_limit'})
-  declare usageLimit: number
+  declare usage_limit: number
   @column({serializeAs:'usage_per_user'})
-  declare usagePerUser: number
+  declare usage_per_user: number
   @column.date({serializeAs:'start_date'})
-  declare startDate: DateTime
+  declare start_date: DateTime
   @column.date({serializeAs:'end_date'})
-  declare endDate: DateTime
+  declare end_date: DateTime
   @column()
   declare status: boolean
+  @column({serializeAs:'auto_apply'})
+  declare auto_apply: boolean
   @column()
   declare expired: boolean
 
@@ -45,6 +47,6 @@ export default class Coupon extends BaseModel {
 
    @computed()
     public get discountTypeText(): string {
-      return this.discountType === discountType.Percentage ? 'Percentage' : 'Fixed';
+      return this.discount_type === discountType.Percentage ? 'Percentage' : 'Fixed';
     }
 }
