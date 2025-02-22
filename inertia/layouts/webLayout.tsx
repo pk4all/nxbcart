@@ -1,30 +1,27 @@
-import { Head } from '@inertiajs/react';
+import { Head,usePage } from '@inertiajs/react';
 import Header from '../components/web/Header';
 import Footer from '../components/web/Footer';
 import { CurrencyProvider } from '../context/CurrencyContext';
 import { CartProvider } from '../context/CartContext';
 import MobileMenu from '../components/web/MobileMenu';
-import React from 'react'
-// import Bugsnag from '@bugsnag/js'
-// import BugsnagPluginReact from '@bugsnag/plugin-react'
-// import BugsnagPerformance from '@bugsnag/browser-performance'
+import Alert from '../components/alert/Alert';
+import React,{useEffect} from 'react'
 
-// Bugsnag.start({
-//   apiKey: '58976f2570fc5566527939603aceb371',
-//   plugins: [new BugsnagPluginReact()]
-// })
-// BugsnagPerformance.start({ apiKey: '58976f2570fc5566527939603aceb371' })
-// const ErrorBoundary = Bugsnag.getPlugin('react').createErrorBoundary(React)
 interface MainLayoutProps {
   title?: string;
   children: React.ReactNode;
 }
 
 export default function WebLayout({ title, children}: MainLayoutProps) {
+    const { data } = usePage<any>().props;
+  useEffect(()=>{
+     // console.log(data,"data page")
+  },[data]);
+  // 
   return (
     <>
-    {/* <ErrorBoundary> */}
       <Head title={title} />
+      
       <CurrencyProvider>
         <CartProvider>
         <Header className="header" />
@@ -35,7 +32,6 @@ export default function WebLayout({ title, children}: MainLayoutProps) {
         </div>
         </CartProvider>
       </CurrencyProvider>
-    {/* </ErrorBoundary> */}
     </>
   );
 }

@@ -25529,11 +25529,31 @@
 .m-l-2{
   margin-left: 0.2rem;
 }
+
+.m-t-1{
+  margin-top:1rem;
+}
 .user-menu-item{
   font-size: 21px;
 }
 .service-section{
   border-bottom: 1px dashed #c1c1c1;
+}
+
+.product-active img{
+  border:#00acee 1px solid;
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+  -webkit-filter: grayscale(0) blur(0);
+  filter: grayscale(0) blur(0);
+  opacity: 1;
+  -webkit-box-shadow: 0 0 8px rgba(34, 34, 34, .16);
+  box-shadow: 0 0 8px rgba(34, 34, 34, .16);
+}
+
+.product-page-rating li{
+  font-size: 20px;
+  margin-right:0;
 }
   /* .last-item-right{
     margin-left: auto;

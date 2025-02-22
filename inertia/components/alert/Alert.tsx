@@ -1,6 +1,6 @@
 import React from 'react';
-import { Check, CircleX, TriangleAlert } from 'lucide-react';
-import CloseButton from '@/Components/Button/CloseButton';
+// import { Check, CircleX, TriangleAlert } from 'lucide-react';
+import CloseButton from '../button/CloseButton';
 
 interface Alert {
   message: string;
@@ -29,12 +29,16 @@ export default function Alert({
     warning: 'bg-yellow-500 text-yellow-800'
   }[variant || 'success'];
 
+  // const iconComponent = {
+  //   success: <Check size={20} />,
+  //   error: <CircleX size={20} />,
+  //   warning: <TriangleAlert size={20} />
+  // }[variant || 'success'];
   const iconComponent = {
-    success: <Check size={20} />,
-    error: <CircleX size={20} />,
-    warning: <TriangleAlert size={20} />
+    success:'success',
+    error: 'error',
+    warning: 'warning'
   }[variant || 'success'];
-
   return (
     <div
       className={`${backGroundColor} px-4 mb-8 flex items-center justify-between rounded max-w-3xl`}

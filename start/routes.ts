@@ -33,7 +33,7 @@ const CartApiController = ()=>import('#controllers/apis/cart_api_controller')
 router.get('/', [HomeController, 'index'])//.use(middleware.customer())
 router.get('/cart', [HomeController, 'cart'])
 router.get('/checkout', [HomeController, 'checkout'])
-
+router.get('/product/:slug', [HomeController, 'productDetail'])
 router.get('/csrf-token', async ({ response, request }) => {
     return response.json({ csrfToken: request.csrfToken})
 })

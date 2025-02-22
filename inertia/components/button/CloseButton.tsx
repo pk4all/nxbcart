@@ -1,6 +1,5 @@
 import { ComponentProps } from 'react';
 import classNames from 'classnames';
-import { X } from 'lucide-react';
 
 interface CloseButtonProps extends ComponentProps<'button'> {
   color: string | 'red' | 'green';
@@ -17,7 +16,7 @@ export default function CloseButton({ color, onClick }: CloseButtonProps) {
       type="button"
       className="focus:outline-none group p-2"
     >
-      <X size={16} className={className} />
+      X
     </button>
   );
 }

@@ -10,6 +10,7 @@ import InfoBanners from '../../components/web/InfoBanners';
 import TopProducts from '../../components/web/TopProducts';
 import FullBanner from '../../components/web/FullBanner';
 import HomeBlogs from '../../components/web/HomeBlogs';
+import Alert from '../../components/alert/Alert';
 function Home() {
   return (
     <>
