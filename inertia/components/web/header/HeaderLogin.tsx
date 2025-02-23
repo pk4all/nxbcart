@@ -7,8 +7,9 @@ import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import useCsrfToken from "../../../hooks/useCsrfToken";
-
+import {useCart} from '../../../context/CartContext';
 const HeaderLogin = () => {
+    const {login,changeLogin} = useCart();
     const [loading, setLoading] = useState(true);
     const [btnLoading, setBtnLoading] = useState(false);
     const [open, setOpen] = useState(false);
@@ -16,12 +17,18 @@ const HeaderLogin = () => {
     const [mobileNumber, setMobileNumber] = useState("");
     const cd = usePage().props?.customer;
     const [customer, setCustomer] = useState(cd);
+   
     //  const {customer} = usePage().props;
      //console.log(customer,'page data')
     const handleOpen = () => {
         setOpen(true);
     };
-    const handleClose = () => setOpen(false);
+    const handleClose = () => {
+        setOpen(false);
+        if(login){
+            changeLogin(false);
+        }
+    };
     const csrfToken = useCsrfToken();
     const schema = yup.object({
         mobile:yup
@@ -132,7 +139,8 @@ const HeaderLogin = () => {
       }
     useEffect(() => {
         setLoading(false);
-      }, []);
+        setOpen(login);
+      }, [login]);
     if (loading) {
         return <li><Placeholder.Graph active width={50} height={50} /></li>;
     }

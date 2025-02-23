@@ -23,7 +23,7 @@ const ProductRightBox = () => {
                                     <li>
                                         <div className="offer-product">
                                             <a href="product-left.html" className="offer-image">
-                                                <img src="/images/vegetable/product/23.png"
+                                                <img src="/images/dl_1.jpg"
                                                     className="img-fluid" alt="" />
                                             </a>
 
@@ -42,7 +42,7 @@ const ProductRightBox = () => {
                                     <li>
                                         <div className="offer-product">
                                             <a href="product-left.html" className="offer-image">
-                                                <img src="/images/vegetable/product/24.png"
+                                                <img src="/images/dl_2.jpg"
                                                     className="" alt="" />
                                             </a>
 
@@ -57,12 +57,11 @@ const ProductRightBox = () => {
                                             </div>
                                         </div>
                                     </li>
-
+                                    
                                     <li>
                                         <div className="offer-product">
                                             <a href="product-left.html" className="offer-image">
-                                                <img src="/images/vegetable/product/25.png"
-                                                    className="" alt="" />
+                                                <img src="/images/dl_3.jpeg" className="" alt="" />
                                             </a>
 
                                             <div className="offer-detail">

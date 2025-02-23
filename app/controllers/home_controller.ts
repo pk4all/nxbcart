@@ -3,8 +3,11 @@ import User from '#models/user'
 import Product from '#models/product'
 
 export default class HomeController {
-    async index({inertia}: HttpContext){
+    async index({inertia,request,session}: HttpContext){
        // console.log(await auth.use('customer').user,'customer',await auth.user);
+       const cookieValue = request.cookiesList();
+       const sessionId = session.sessionId;
+       console.log(cookieValue,sessionId);
         return inertia.render('web/home',{
            // data:'test'
         })

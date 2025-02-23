@@ -21,7 +21,7 @@ interface MainMenuProps {
                             <table className="table">
                                 <tbody>
                                 {Object.entries(cart).map(([index,item])=>(
-                                    <tr className="product-box-contain">
+                                    <tr className="product-box-contain" key={'product-'+index}>
                                         <td className="product-detail">
                                             <div className="product border-0">
                                                 <Link href={`/product/${item?.slug}`}className="product-image">

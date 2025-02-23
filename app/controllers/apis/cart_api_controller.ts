@@ -27,5 +27,10 @@ export default class HomeApiController {
             return response.status(500).json({message:error?.message})
         }
     }
+
+    async addToWishList({request,response,session}:HttpContext){
+        console.log(request,response,session);
+    }
+    
      
 }

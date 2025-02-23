@@ -54,12 +54,12 @@ const ProductPrice = () => {
                                         </div>
                                     </div>
 
-                                    <button onClick={() => addToCart(product)} className="btn  btn-2 theme-bg-color text-white btn-2-animation w-100">Add To Cart</button>
+                                    <button onClick={() => addToCart(product)} className="btn  btn-2 theme-bg-color text-white btn-animation w-100">Add To Cart</button>
                                 </div>
 
                                 <div className="buy-box">
                                     <button onClick={()=>addToWishList(product)}>
-                                        <i className="fa fa-heart m-r-2"></i>
+                                        <i className="fa fa-heart m-r-1"></i>
                                         <span>Add To Wishlist</span>
                                     </button>
                                     {/* <a href="compare.html">

@@ -1,6 +1,7 @@
 .theme-color-1 {
     --theme-color: #d99f46;
     --theme-color-rgb: 217, 159, 70
+    
   }
   .theme-color-2 {
     --theme-color: #0baf9a;
@@ -18,8 +19,14 @@
     --theme-color: #417394;
     --theme-color-rgb: 65, 115, 148
   }
+
+  .theme-color-nxb {
+    --theme-color: #ff6b6b;
+    --theme-color-rgb: 255, 107, 107
+  }
+
   :root {
-    --theme-color: #0da487;
+    --theme-color: #ff6b6b;
     --theme-color-rgb: 13, 164, 135;
     --theme-color1: #0e947a;
     --theme-color1-rgb: 14, 148, 122;
@@ -25529,9 +25536,15 @@
 .m-l-2{
   margin-left: 0.2rem;
 }
+.m-r-1{
+  margin-right: 0.2rem;
+}
 
 .m-t-1{
   margin-top:1rem;
+}
+.m-b-1{
+  margin-bottom:1rem;
 }
 .user-menu-item{
   font-size: 21px;
@@ -25554,6 +25567,10 @@
 .product-page-rating li{
   font-size: 20px;
   margin-right:0;
+}
+
+.rs-slider{
+  width: 100%;
 }
   /* .last-item-right{
     margin-left: auto;

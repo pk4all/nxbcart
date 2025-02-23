@@ -1,5 +1,6 @@
 // src/context/CartContext.js
 import React, { createContext, useState,useContext,useEffect } from 'react';
+import { usePage } from "@inertiajs/react";
 import { Product } from '~/types';
 interface CartItem extends Product {
     quantity: number;
@@ -15,11 +16,15 @@ interface CartContextType {
     saveForLater:(product: Product) => void;
     clearCart: () => void;
     totalPrice:number;
+    login:boolean;
+    changeLogin:(p:boolean) => void;
 }
 const CartContext = createContext<CartContextType | undefined>(undefined);
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [cart, setCart] = useState<CartItem[]>([]);
-  
+    const [login, setLogin] = useState(false);
+    const customer = usePage().props?.customer;
+
     // Add item to cart
     const addToCart = async (product: Product) => {
         await setCart((prevCart) => {
@@ -129,12 +134,21 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
       };
       const addToWishList = (product: Product) => {
+          if(!customer){
+            setLogin(true);
+          }
            // console.log('added to wishlist',product?.id)
       };
       const saveForLater = (product: Product) => {
+          if(!customer){
+            setLogin(true);
+          }
+           
         // console.log('added to saveForLater',product?.id)
       };
-
+      const changeLogin = (ch:boolean)=>{
+        setLogin(ch);
+      }
       useEffect(() => {
         loadCart();
       }, []);
@@ -144,7 +158,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     //console.log(totalPrice,'totalPrice',cart)
     return (
       <CartContext.Provider
-        value={{ cart, addToCart, removeFromCart, updateQuantity, clearCart, handleMinus, handlePlus,addToWishList,totalPrice,saveForLater }}
+        value={{ cart, addToCart, removeFromCart, updateQuantity, clearCart, handleMinus, handlePlus,addToWishList,totalPrice,saveForLater,login,changeLogin}}
       >
         {children}
       </CartContext.Provider>

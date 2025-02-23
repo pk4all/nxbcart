@@ -20,8 +20,7 @@ export default function WebLayout({ title, children}: MainLayoutProps) {
   // 
   return (
     <>
-      <Head title={title} />
-      
+      {/* <Head title={title} /> */}
       <CurrencyProvider>
         <CartProvider>
         <Header className="header" />
