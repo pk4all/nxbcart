@@ -6,6 +6,7 @@ export default class extends BaseSchema {
   async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
+      table.integer('user_id')
       table.enum('size', ['large', 'medium','small']).notNullable().defaultTo('large')
       table.enum('ad_type', ['banner', 'video','text','popup']).notNullable().defaultTo('banner')
       table.enum('position', ['header', 'footer','sidebar','middle','inproduct']).notNullable().defaultTo('header')

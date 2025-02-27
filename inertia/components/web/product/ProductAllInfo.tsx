@@ -67,10 +67,10 @@ const ProductAllInfo = () => {
                                     <tbody>
                                     {
                                          product.productAttributes.map((info:any)=>(
-                                            <tr>
-                                            <th>{capitalizeEveryWord(info?.key)}</th>
-                                            <td>{info?.value}</td>
-                                        </tr>
+                                            <tr key={'attributs-'+info?.id}>
+                                                <th>{capitalizeEveryWord(info?.key)}</th>
+                                                <td>{info?.value}</td>
+                                            </tr>
                                          ))
                                     }
                                     </tbody>
@@ -257,8 +257,7 @@ const ProductAllInfo = () => {
                     </div>
                 </div>
             </div>
-        </div>
-                      
+        </div>          
      </>
     );
   };

@@ -25,7 +25,7 @@ export default class AuthController {
                return inertia.render('admin/auth/login',{errors:{invalid:'Invalid credentials'}})
             }
             const validateuser = await User.verifyCredentials(email, password)
-            await auth.use('web').login(validateuser,!!request.input('remember_me'))
+            await auth.use('web').login(validateuser)
             response.redirect('/admin/dashboard')
         } catch (error) {
             return inertia.render('admin/auth/login',{errors:{invalid:error.message}})

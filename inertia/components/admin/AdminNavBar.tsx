@@ -164,6 +164,23 @@ const AdminNavBar = () => {
                                         
                                     </ul>
                                 </li>
+                                <li className="sidebar-list" onClick={()=>toggleVisibility(6)}>
+                                    <a className="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i className="ri-price-tag-3-line"></i>
+                                        <span>Shipping Charges</span>
+                                        <div className="according-menu">
+                                            <i className={`${menuIndex==6 ? 'ri-arrow-down-s-line' : 'ri-arrow-right-s-line'}`}></i>
+                                        </div>
+                                    </a>
+                                    <ul className={`sidebar-submenu ${menuIndex==6 ? '' : 'hide'}`}>
+                                        <li>
+                                            <Link href="/admin/shippings">List</Link>
+                                        </li>
+                                        <li>
+                                            <Link href="/admin/shippings/add">Add</Link>
+                                        </li>
+                                    </ul>
+                                </li>
                             </ul>
                         </div>
 

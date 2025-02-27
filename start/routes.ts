@@ -22,6 +22,7 @@ const AttributesController = ()=>import('#controllers/admin/attributes_controlle
 const CouponController = () => import('#controllers/admin/coupons_controller')
 const LocationsController = ()=>import('#controllers/admin/locations_controller')
 const TaxesController = ()=>import('#controllers/admin/taxes_controller')
+const ShippingController = ()=>import('#controllers/admin/shipping_controller')
 /*================== Apis Controllers================================ */
 const HomeApiController = ()=>import('#controllers/apis/home_api_controller')
 const CustomerApiController = ()=>import('#controllers/apis/customer_api_controller')
@@ -37,6 +38,7 @@ router.get('/product/:slug', [HomeController, 'productDetail'])
 router.get('/csrf-token', async ({ response, request }) => {
     return response.json({ csrfToken: request.csrfToken})
 })
+router.get('/ai',[HomeController,'ai'])
 
 router.group(() => {
 
@@ -50,9 +52,13 @@ router.group(() => {
 
     router.post('/cart/save', [CartApiController, 'saveCart'])
     router.get('/cart/load', [CartApiController, 'getCart'])
+    router.post('cart/apply-coupon', [CartApiController, 'applyCoupon'])
+    router.get('/cart/get-shipping', [CartApiController, 'getShipping'])
+    
 
     router.post('/customer/send-otp', [CustomerApiController, 'sendOtp'])
     router.post('/customer/verify-otp', [CustomerApiController, 'verifyOtp'])
+
     router.post('/logout', [CustomerApiController, 'logout'])
 }).prefix('/api')
 //**************Apis Router [End]******************/
@@ -71,7 +77,7 @@ router.group(() => {
 
     router.group(() => {
         router.get('/logout', async ({ auth, response }) => {
-            await auth.use('web').logout()
+           // await auth.use('web').logout()
             return response.redirect('/admin')
         })
         router.get('/dashboard', [DashboardController, 'dashboard'])
@@ -125,6 +131,14 @@ router.group(() => {
         router.post('/taxes/update/:id', [TaxesController, 'update'])
         router.get('/taxes/change-status/:id', [TaxesController, 'changeStatus'])
         router.get('/taxes/get', [TaxesController, 'getTaxes'])
+
+        router.get('/shippings', [ShippingController, 'list'])
+        router.get('/shippings/add', [ShippingController, 'add'])
+        router.get('/shippings/edit/:id', [ShippingController, 'edit'])
+        router.post('/shippings/save', [ShippingController, 'save'])
+        router.post('/shippings/update/:id', [ShippingController, 'update'])
+        router.get('/shippings/change-status/:id', [ShippingController, 'changeStatus'])
+        router.get('/shippings/get', [ShippingController, 'getShipping'])
         
 
         router.get('/locations/countries',[LocationsController,'countries'])

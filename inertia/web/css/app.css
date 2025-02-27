@@ -25572,8 +25572,16 @@
 .rs-slider{
   width: 100%;
 }
-  /* .last-item-right{
-    margin-left: auto;
-  } */
-  /*# sourceMappingURL=style.css.map */
+.lord-icon-color{
+  font-size: 24px;
+  padding: 10px 0 0 5px;
+  color: var(--theme-color);
+}
+
+.center-both {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
   

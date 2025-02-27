@@ -7,7 +7,8 @@
     "paths": {
       "~/*": ["./*"],
     },
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "strict": true,
   },
-  "include": ["./**/*.ts", "./**/*.tsx"],
+  "include": ["./**/*.ts", "./**/*.tsx","global.d.ts"],
 }
